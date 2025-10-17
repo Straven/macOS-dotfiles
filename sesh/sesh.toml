@@ -1,0 +1,9 @@
+[[session]]
+name = "macos-dotfiles"
+path = "~/OneDrive/StravenConfigs/dotfiles/macos-dotfiles"
+startup_command = "nvim ."
+
+[[session]]
+name = "nikolaj-sarry.blog"
+path = "~/OneDrive/Projects/nikolaj-sarry-blog"
+startup_script = "~/.config/sesh/scripts/term"

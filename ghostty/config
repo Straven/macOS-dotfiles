@@ -1,0 +1,20 @@
+theme = Eldritch
+
+background-opacity = 0.75
+background-blur-radius = 20
+
+window-padding-x = 4,2
+window-padding-y = 6,0
+
+font-family = "FiraCode Nerd Font"
+font-size = 15
+font-style = "Retina"
+
+macos-option-as-alt = right
+macos-titlebar-style = hidden
+
+keybind = cmd+option+t=toggle_quick_terminal
+quick-terminal-animation-duration = 0.08
+
+keybind = super+i=inspector:toggle
+keybind = super+shift+r=reload_config

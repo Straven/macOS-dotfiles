@@ -1,0 +1,98 @@
+# restart yabai
+ctrl + alt + cmd - y : ~/.config/yabai/yabai-restart.sh
+
+# Restart SketchyBar
+ctrl + alt + cmd - b : brew services restart sketchybar
+
+# Reload skhd
+ctrl + alt + cmd - k : skhd --reload
+
+# ============================================
+# SPACE NAVIGATION
+# ============================================
+
+# Focus specific spaces
+ctrl + alt - 1 : yabai -m space --focus 1    # Default space
+ctrl + alt - s : yabai -m space --focus 2    # Safari
+ctrl + alt - t : yabai -m space --focus 3    # Terminal (Ghostty)
+ctrl + alt - o : yabai -m space --focus 4    # Obsidian
+ctrl + alt - w : yabai -m space --focus 5    # Work
+ctrl + alt - i : yabai -m space --focus 6    # AI
+ctrl + alt - m : yabai -m space --focus 7    # Media
+ctrl + alt - c : yabai -m space --focus 8    # Chats
+
+# Move window to specific space
+ctrl + alt + shift - 1 : yabai -m window --space 1
+ctrl + alt + shift - 2 : yabai -m window --space 2
+ctrl + alt + shift - 3 : yabai -m window --space 3
+ctrl + alt + shift - 4 : yabai -m window --space 4
+ctrl + alt + shift - 5 : yabai -m window --space 5
+ctrl + alt + shift - 6 : yabai -m window --space 6
+ctrl + alt + shift - 7 : yabai -m window --space 7
+ctrl + alt + shift - 8 : yabai -m window --space 8
+
+# ============================================
+# WINDOW VISIBILITY CONTROLS
+# ============================================
+
+# Hide/Show focused window (minimize)
+ctrl + alt + cmd - h : yabai -m window --minimize
+
+# Hide all windows on current space
+ctrl + alt + cmd - a : yabai -m query --windows --space | jq -r '.[].id' | xargs -I{} yabai -m window {} --minimize
+
+# Show last focused (minimized) window
+ctrl + alt + cmd - l : yabai -m window --focus recent
+
+# Alternative: Show last minimized window (unminimize most recent)
+ctrl + alt + cmd - u : yabai -m window last --focus
+
+# ============================================
+# STACK NAVIGATION
+# ============================================
+
+# Cycle through stack windows (next/previous)
+alt - tab : yabai -m window --focus stack.next || yabai -m window --focus stack.first
+alt + shift - tab : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
+
+# Focus recent window
+ctrl + alt - tab : yabai -m window --focus recent
+
+# ============================================
+# APP LAUNCHING & FOCUSING
+# ============================================
+ctrl + alt + cmd - s : open -a "Safari"
+ctrl + alt + cmd - z : open -a "Zen Browser"
+ctrl + alt + cmd - w : open -a "WhatsApp"
+ctrl + alt + cmd - g : open -a "Ghostty"
+ctrl + alt + cmd - o : open -a "Obsidian"
+ctrl + alt + cmd - m : open -a "Music"
+ctrl + alt + cmd - f : open -a "Finder"
+
+# ============================================
+# DISPLAY MANAGEMENT (Optional)
+# ============================================
+
+# Focus display
+ctrl + alt - left : yabai -m display --focus west
+ctrl + alt - right : yabai -m display --focus east
+
+# Move window to display
+ctrl + alt + shift - left : yabai -m window --display west
+ctrl + alt + shift - right : yabai -m window --display east
+
+# ============================================
+# WINDOW OPERATIONS
+# ============================================
+
+# Toggle window fullscreen
+ctrl + shift + cmd - f : yabai -m window --toggle zoom-fullscreen
+
+# Toggle window native fullscreen
+ctrl + shift + cmd - return : yabai -m window --toggle native-fullscreen
+
+# Float / Unfloat window
+ctrl + shift + cmd - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
+
+# Close focused window
+ctrl + shift + cmd - w : yabai -m window --close
