@@ -19,16 +19,11 @@ local spaces = {}
 -- }
 
 local space_names = {
-	[1] = "1",
-	[2] = "S",
-	[3] = "T",
-	[4] = "O",
-	[5] = "W",
-	[6] = "AI",
-	[7] = "M",
-	[8] = "8",
-	[9] = "9",
-	[10] = "10",
+	[1] = "G",
+	[2] = "P",
+	[3] = "W",
+	[4] = "M",
+	[5] = "AI",
 }
 
 local colors_spaces = {
@@ -37,11 +32,6 @@ local colors_spaces = {
 	[3] = colors.cmap_3,
 	[4] = colors.cmap_4,
 	[5] = colors.cmap_5,
-	[6] = colors.cmap_6,
-	[7] = colors.cmap_7,
-	[8] = colors.cmap_8,
-	[9] = colors.cmap_9,
-	[10] = colors.cmap_10,
 }
 
 for i = 1, 10, 1 do
@@ -148,11 +138,6 @@ sbar.add("bracket", {
 	spaces[3].name,
 	spaces[4].name,
 	spaces[5].name,
-	spaces[6].name,
-	spaces[7].name,
-	spaces[8].name,
-	spaces[9].name,
-	spaces[10].name,
 }, {
 	background = {
 		color = colors.background,

@@ -1,138 +1,113 @@
-#should be always on top
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 sudo yabai --load-sa
 
-# Global settings
+# Define variables
+non_transparent_apps="(Safari|Zen Browser|WhatsApp|Google Chrome|Microsoft Word|Microsoft Excel|Preview|Finder|VSCodium|Visual Studio Code|Spotify|Music|TV|Megogo|Claude|Monica|Notes|Microsoft PowerPoint|Firefox)"
+transparent_apps="(Ghostty|Obsidian|Zed)"
+opacity_value=0.75
+
+# ====== Global Settings ======
+
+# Layout mode - stack only (no BSP, no layout switching)
 yabai -m config layout stack
-
-# Window settings
-yabai -m config window_opacity on
-opacity_value = 0.75
-#yabai -m config active_window_opacity $opacity_value
-#yabai -m config normal_window_opacity $opacity_value
-
-# Window modifications
-yabai -m config window_shadow float
-yabai -m config window_border off
-
-# Mouse settings
-yabai -m config mouse_follows_focus off
-yabai -m config focus_follows_mouse off
-
-# Stack settings
 yabai -m config window_topmost off
-#yabai -m config window_opacity_duration 0.0
+# Window opacity - 75% for most apps, 100% for non-transparent apps
+yabai -m config window_shadow float
+yabai -m config window_opacity on
+yabai -m config window_opacity_duration 0.0
+yabai -m config active_window_opacity 1.0
+yabai -m config normal_window_opacity 1.0
+
+# Mouse support
+yabai -m config mouse_follows_focus on
+yabai -m config focus_follows_mouse off
+yabai -m config mouse_modifier fn
+yabai -m config mouse_action1 move
+yabai -m config mouse_action2 resize
+
+# Window borders (disabled by default)
+yabai -m config window_border off
+# yabai -m config window_border_width 4
+# yabai -m config active_window_border_color 0xff81a1c1
+# yabai -m config normal_window_border_color 0xff3b4252
 
 # Padding and gaps (minimal for stack mode)
-yabai -m config top_padding 8
-yabai -m config bottom_padding 8
-yabai -m config left_padding 8
-yabai -m config right_padding 8
-yabai -m config window_gap 8
+yabai -m config top_padding 7
+yabai -m config bottom_padding 7
+yabai -m config left_padding 7
+yabai -m config right_padding 7
+yabai -m config window_gap 7
 
-# ============================================
-# SKETCHYBAR INTEGRATION
-# ============================================
-
-# Reserve space for SketchyBar (40px bar + 8px padding = 48px)
+# External bar support (for sketchybar)
 yabai -m config external_bar all:48:0
 
-# ============================================
-# LOAD APP VARIABLES
-# ============================================
+# ====== Space Configuration ======
 
-# Source the app configuration file
-# source "$HOME/.config/yabai/apps.sh"
+# Set space labels (5 spaces required)
+yabai -m space 1 --label general
+yabai -m space 2 --label personal
+yabai -m space 3 --label work
+yabai -m space 4 --label media
+yabai -m space 5 --label ai
 
-# ============================================
-# APP-SPECIFIC RULES
-# ============================================
+# ====== Application Rules ======
 
-# Apply opacity rules for non-transparent apps
-#for app in "${NON_TRANSPARENT_APPS[@]}"; do
-#    yabai -m rule --add event=window_focused app="^${non_transparent_apps}$" action="yabai -m config active_window_opacity 1"
-#done
+# Personal space apps
+yabai -m rule --add app="^Ghostty$" space=personal
+yabai -m rule --add app="^Safari$" space=personal
+yabai -m rule --add app="^Zed$" space=personal
+yabai -m rule --add app="^Zen Browser$" space=personal
+yabai -m rule --add app="^VSCodium$" space=personal
+yabai -m rule --add app="^Visual Studio Code$" space=personal
+yabai -m rule --add app="^Obsidian$" space=personal
 
-# Apply opacity rules for transparent apps
-#for app in "${TRANSPARENT_APPS[@]}"; do
-#    yabai -m rule --add event=window_focused app="^${transparent_apps}$" action="yabai -m config active_window_opacity $opacity_value"
-#done
+# Work space apps
+yabai -m rule --add app="^Microsoft Word$" space=work
+yabai -m rule --add app="^Microsoft Excel$" space=work
+yabai -m rule --add app="^Notes$" space=work
+yabai -m rule --add app="^Microsoft PowerPoint$" space=work
+yabai -m rule --add app="^Google Chrome$" space=work
+yabai -m rule --add app="^Firefox$" space=work
 
-# Define non-transparent apps (opacity = 1.0)
-# Only apps listed here will be fully opaque
-non_transparent_apps="(Safari|Zen Browser|WhatsApp|Google Chrome|Microsoft Word|Microsoft Excel)"
+# Media space apps
+yabai -m rule --add app="^Spotify$" space=media
+yabai -m rule --add app="^Music$" space=media
+yabai -m rule --add app="^TV$" space=media
+yabai -m rule --add app="^Megogo$" space=media
 
-# Define transparent apps - optional, just for documentation
-# These will use the default opacity of 0.75
-transparent_apps="(Ghostty|Spotify|Music|Notes|Claude|Monica|Obsidian|Finder|Zed)"
-yabai -m signal --add event=window_focused app="^${transparent_apps}$" action="yabai -m config active_window_opacity $opacity_value"
-yabai -m signal --add event=window_focused app="^${transparent_apps}$" action="yabai -m config normal_window_opacity 0.00001"
+# AI space apps
+yabai -m rule --add app="^Claude$" space=ai
+yabai -m rule --add app="^Monica$" space=ai
 
-# Apply non-transparency rules (explicitly set to 1.0)
-#yabai -m rule --add app="${non_transparent_apps}" opacity=1.0
-yabai -m signal --add event=window_focused app="^${non_transparent_apps}$" action="yabai -m config active_window_opacity 1"
-yabai -m signal --add event=window_focused app="^${non_transparent_apps}$" action="yabai -m config normal_window_opacity 1" 
+# ====== Float Rules ======
 
-# Note: Apps in transparent_apps will automatically use the default opacity (0.75)
-# No need to explicitly set rules for transparent apps
+# System apps that should always float
+yabai -m rule --add app="^System Settings$" manage=off
+yabai -m rule --add app="^System Preferences$" manage=off
+yabai -m rule --add app="^System Information$" manage=off
+yabai -m rule --add app="^Activity Monitor$" manage=off
+yabai -m rule --add app="^Calculator$" manage=off
+yabai -m rule --add app="^Finder$" title="(Copy|Connect|Move|Info|Pref)" manage=off
+yabai -m rule --add app="^Archive Utility$" manage=off
+yabai -m rule --add app="^Disk Utility$" manage=off
+yabai -m rule --add app="^App Store$" manage=off
+yabai -m rule --add app="^Time Machine$" manage=off
 
-system_apps="(System Settings|System Preferences|System Information|Activity Monitor|Calculator|App Store|Archive Utility)"
+# Float preferences windows
+yabai -m rule --add title="^Preferences$" manage=off
+yabai -m rule --add title="^Settings$" manage=off
 
-# ============================================
-# SYSTEM APPS TO IGNORE
-# ============================================
+# ====== Signals ======
 
-#for app in "${SYSTEM_APPS[@]}"; do
-    yabai -m rule --add app="^${system_apps}$" manage=off
-#done
-
-# Floating windows
-yabai -m rule --add title="^(Opening|Preferences|Settings)" manage=off
-yabai -m rule --add title="^Software Update$" manage=off
-
-# ============================================
-# SPACE ASSIGNMENTS
-# ============================================
-
-# Space 2: Safari (S)
-yabai -m rule --add app="^Safari$" space=2
-
-# Space 3: Ghostty (T - Terminal)
-yabai -m rule --add app="^Ghostty$" space=3
-
-# Space 4: Obsidian (O)
-yabai -m rule --add app="^Obsidian$" space=4
-yabai -m rule --add app"^Zed$" space=4
-
-# Space 5: Work/Communication (W)
-yabai -m rule --add app="^Google Chrome$" space=5
-yabai -m rule --add app="^Microsoft Excel$" space=5
-yabai -m rule --add app="^Microsoft Word" space=5
-yabai -m rule --add app="^Notes$" space=5
-
-# Space 6: AI Assistants (AI)
-yabai -m rule --add app="^Claude$" space=6
-yabai -m rule --add app="^Monica$" space=6
-
-# Space 7: Media (M)
-yabai -m rule --add app="^Spotify$" space=7
-yabai -m rule --add app="^Music$" space=7
-yabai -m rule --add app="^TV$" space=7
-yabai -m rule --add app="^Megogo$" space=7
-
-# Space 8: Communication (C)
-yabai -m rule --add app="^WhatsApp$" space=8
-yabai -m rule --add app="^Telegram$" space=8
-yabai -m rule --add app="^Discord$" space=8
-
-# ============================================
-# DYNAMIC LAYERING
-# ============================================
-yabai -m rule --add app=".*" layer=normal
-# Add signal to call helper script on window focus
-# yabai -m signal --add event=window_focused action="~/.config/yabai/layer_manager.sh"
-
+# Refresh sketchybar when space/window changes
+yabai -m signal --add event=space_changed action="sketchybar --trigger space_change"
+yabai -m signal --add event=display_changed action="sketchybar --trigger display_change"
 yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
+yabai -m signal --add event=window_title_changed action="sketchybar --trigger title_change"
+
+# Apply selective opacity to windows
+yabai -m signal --add event=window_focused action="$HOME/.config/yabai/scripts/window_opacity.sh"
+yabai -m signal --add event=window_created action="$HOME/.config/yabai/scripts/window_opacity.sh"
 
 ###############################################################################
 #                                Defaults
@@ -165,4 +140,4 @@ yabai -m config \
 	mouse_action2 resize \
 	mouse_drop_action swap
 
-echo "yabai configuration loaded.."
+echo "yabai configuration loaded successfully"# Padding and gaps
