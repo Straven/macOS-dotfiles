@@ -5,7 +5,6 @@ return {
       "css_variables",
       "cssls",
       "cssmodules_ls",
-      "dartls",
       "fish_lsp",
       "gitlab_ci_ls",
       "gopls",

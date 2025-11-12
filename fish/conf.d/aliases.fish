@@ -1,5 +1,5 @@
 # Fish restart
-abbr fish-restart "source ~/.config/fish/config.fish" o
+abbr fish-restart "source ~/.config/fish/config.fish"
 
 # yazi
 abbr yz yazi
@@ -11,6 +11,7 @@ abbr bin "brew info"
 abbr binc "brew info --cask"
 abbr bs "brew search"
 abbr bl "brew list"
+abbr bu "brew uninstall"
 
 # Hugo
 abbr hserv "hugo server -D"
@@ -33,6 +34,11 @@ abbr -a tk 'tmux kill-session -t'
 # homescreen
 abbr -a home homescreen
 abbr -a ff refresh_fastfetch
+
+#macos-dotfiles
+abbr -a c-mdots macos_dotfiles
+abbr -a r-mdots recreate_macos_dotfiles
+abbr -a k-mdots kill_macos_dotfiles
 
 # sesh
 abbr -a s sesh
