@@ -1,5 +1,5 @@
 return {
-  "williamboman/mason-lspconfig.nvim",
+  "mason-org/mason-lspconfig.nvim",
   opts = {
     ensure_installed = {
       "css_variables",
@@ -25,7 +25,7 @@ return {
     },
   },
   dependencies = {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     "neovim/nvim-lspconfig",
   },
 }
