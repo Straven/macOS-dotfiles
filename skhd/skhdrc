@@ -111,6 +111,8 @@ ctrl + shift + alt - 3 : yabai -m window --display 3; yabai -m display --focus 3
 
 # Restart yabai
 ctrl + alt + cmd - y : ~/.config/yabai/yabai-restart.sh
+ctrl + alt + cmd - s : brew services restart sketchybar && osascript -e 'display notification "SketchyBar restarted" with title "Configuration"'
+ctrl + alt + cmd - k : skhd --reload && osascript -e 'display notification "skhd reloaded" with title "Configuration"'
 
 # ====== Quick Actions ======
 
@@ -125,3 +127,17 @@ alt - i : yabai -m window --toggle float; yabai -m window --grid 6:6:4:0:2:2
 
 # Center floating window
 alt - c : yabai -m window --toggle float; yabai -m window --grid 6:6:1:1:4:4
+
+# =============================================================================
+# APPLICATION LAUNCHERS
+# =============================================================================
+
+# Primary applications (focus if running, launch if not)
+cmd + alt - t : ~/.config/skhd/scripts/smart_launch.sh "Ghostty" 
+cmd + alt - o : ~/.config/skhd/scripts/smart_launch.sh "Obsidian"
+cmd + alt - b : ~/.config/skhd/scripts/smart_launch.sh "Safari"
+cmd + alt - z : ~/.config/skhd/scripts/smart_launch.sh "Zed"
+cmd + alt - f : ~/.config/skhd/scripts/smart_launch.sh "Finder"
+cmd + alt - c : ~/.confif/skhd/scripts/smart_launch.sh "Claude"
+cmd + alt - n : ~/.config/skhd/scripts/smart_launch.sh "Notes"
+cmd + alt - s : ~/.config/skhd/scripts/smart_launch.sh "Spotify"
