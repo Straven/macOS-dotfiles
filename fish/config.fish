@@ -8,7 +8,7 @@ set -U FZF_TMUX_OPTS -p
 set -U FZF_DEFAULT_OPTS_FILE '$HOME/.config/fzf/.fzfrc'
 
 function fish_title
-#    echo 🐈‍⬛ $argv[1] (pwd)
+    #    echo 🐈‍⬛ $argv[1] (pwd)
 end
 
 # Homebrew
@@ -21,6 +21,8 @@ fish_add_path ~/.local/bin
 
 fish_add_path /opt/homebrew/bin
 fish_add_path $HOME/.config/bin
+
+fish_add_path ~/.cargo/bin
 
 export HOMEBREW_NO_ENV_HINTS=1
 

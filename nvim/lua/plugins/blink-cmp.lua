@@ -3,7 +3,7 @@ return {
   enabled = true,
   -- Use the latest version for best features and performance
   version = "*",
-  
+
   opts = {
     -- Appearance settings
     appearance = {
@@ -58,14 +58,14 @@ return {
     -- Keybindings
     keymap = {
       preset = "default",
-      
+
       -- Show/hide completion
       ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
       ["<C-e>"] = { "hide", "fallback" },
-      
+
       -- Accept completion
       ["<CR>"] = { "accept", "fallback" },
-      ["<Tab>"] = { 
+      ["<Tab>"] = {
         function(cmp)
           if cmp.snippet_active() then
             return cmp.accept()
@@ -76,14 +76,14 @@ return {
         "snippet_forward",
         "fallback",
       },
-      
+
       -- Navigate completion menu
       ["<S-Tab>"] = { "snippet_backward", "select_prev", "fallback" },
       ["<C-j>"] = { "select_next", "fallback" },
       ["<C-k>"] = { "select_prev", "fallback" },
       ["<C-n>"] = { "select_next", "fallback" },
       ["<C-p>"] = { "select_prev", "fallback" },
-      
+
       -- Scroll documentation
       ["<C-b>"] = { "scroll_documentation_up", "fallback" },
       ["<C-f>"] = { "scroll_documentation_down", "fallback" },
@@ -94,7 +94,7 @@ return {
     -- Sources configuration
     sources = {
       default = { "lsp", "path", "snippets", "buffer" },
-      
+
       -- Per-filetype sources
       providers = {
         lsp = {
