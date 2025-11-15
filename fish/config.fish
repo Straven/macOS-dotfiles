@@ -26,7 +26,7 @@ fish_add_path ~/.cargo/bin
 
 export HOMEBREW_NO_ENV_HINTS=1
 
-export CARGO_TARGET_DIR="/tmp/.cargo-target"
+export CARGO_TARGET_DIR="target"
 
 # FZF Plugin
 export FZF_DEFAULT_OPTS='--color=fg:#ebfafa,bg:#282a36,hl:#37f499 --color=fg+:#ebfafa,bg+:#212337,hl+:#37f499 --color=info:#f7c67f,prompt:#04d1f9,pointer:#7081d0 --color=marker:#7081d0,spinner:#f7c67f,header:#323449'

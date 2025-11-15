@@ -45,6 +45,25 @@ abbr -a s sesh
 abbr -a sc 'sesh connect'
 abbr -a sl 'sesh list'
 
+# Rust related
+abbr -a cb 'cargo build'
+abbr -a cr 'cargo run'
+abbr -a ct 'cargo test'
+abbr -a cc 'cargo check'
+abbr -a cbr 'cargo build --release'
+abbr -a crr 'cargo run --release'
+abbr -a ctr 'cargo test --release'
+abbr -a ccl 'cargo clean'
+abbr -a cwr 'cargo watch -x run'
+abbr -a cwt 'cargo watch -x test'
+
+# Clippy and format
+abbr -a ccp 'cargo clippy'
+abbr -a cf 'cargo fmt'
+
+# Update Rust
+abbr -a rup 'rustup update'
+
 # common
 abbr -a v nvim
 abbr -a g git
