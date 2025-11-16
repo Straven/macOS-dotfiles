@@ -1,5 +1,6 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+SETUVAR --export CARAPACE_BRIDGES:zsh\x2cfish\x2cbash\x2cinshellisense
 SETUVAR --export EDITOR:nvim
 SETUVAR FZF_CTRL_R_OPTS:\x2d\x2dreverse
 SETUVAR FZF_DEFAULT_OPTS_FILE:\x24HOME/\x2econfig/fzf/\x2efzfrc

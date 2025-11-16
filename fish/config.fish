@@ -34,6 +34,9 @@ export FZF_DEFAULT_OPTS='--color=fg:#ebfafa,bg:#282a36,hl:#37f499 --color=fg+:#e
 # EZA theme
 export EZA_CONFIG_DIR='$HOME/.config/eza'
 
+set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
+carapace _carapace | source
+
 # Auto launch tmux homescreen only in Ghostty
 # Prevents nested tmux sessions and only runs in interactive mode
 if status is-interactive
