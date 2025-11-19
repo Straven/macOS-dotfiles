@@ -8,7 +8,33 @@ return {
     -- or leave it empty to use the default settings
     -- refer to the configuration section below
     bigfile = { enabled = true },
-    dashboard = { enabled = true },
+    dashboard = {
+      enabled = true,
+      preset = {
+        header = [[
+                    ⚡
+               ⚡  ⚡  ⚡
+            ⚡  ⚡  ⚡  ⚡  ⚡
+
+     A_A               ██╗   ██╗ ██████╗ ██████╗ ██╗   ██╗██╗ ██████╗██╗  ██╗██╗███████╗
+    (-.-)              ╚██╗ ██╔╝██╔═══██╗██╔══██╗██║   ██║██║██╔════╝██║  ██║██║██╔════╝
+     |-|                ╚████╔╝ ██║   ██║██████╔╝██║   ██║██║██║     ███████║██║███████╗
+    /   \                ╚██╔╝  ██║   ██║██╔══██╗██║   ██║██║██║     ██╔══██║██║╚════██║
+   |     |  __           ██║   ╚██████╔╝██║  ██║╚██████╔╝██║╚██████╗██║  ██║██║███████║
+   |  || | |__)          ╚═╝    ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝╚══════╝
+   \_||_/__/
+    (_\_|_)       ██╗   ██╗██╗███╗   ███╗
+                  ██║   ██║██║████╗ ████║
+                  ██║   ██║██║██╔████╔██║
+                  ╚██╗ ██╔╝██║██║╚██╔╝██║
+                   ╚████╔╝ ██║██║ ╚═╝ ██║
+                    ╚═══╝  ╚═╝╚═╝     ╚═╝
+
+⚡ "Fast as lightning, smooth as a cat" ⚡         Ready to <Space>mrr and make something purr-fect!
+                                                                          "The Flash Goddess ~"
+]],
+      },
+    },
     explorer = { enabled = true },
     indent = {
       priority = 1,
