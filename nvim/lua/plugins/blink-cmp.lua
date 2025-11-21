@@ -60,7 +60,7 @@ return {
       preset = "default",
 
       -- Show/hide completion
-      ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+      ["<S-Space>"] = { "show", "show_documentation", "hide_documentation" },
       ["<C-e>"] = { "hide", "fallback" },
 
       -- Accept completion

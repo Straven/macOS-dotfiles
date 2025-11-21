@@ -2,6 +2,7 @@ alacritty/
 kitty/
 fzf/
 tmux/plugins/
+neovim/lua/plugins/dev.lua
 
 ### Backup ###
 *.bak
@@ -82,3 +83,4 @@ tags
 # Ignore all local history of files
 .history
 .ionide
+
