@@ -21,9 +21,10 @@ alt - r : yabai -m window --focus recent
 # Switch between spaces (1-5)
 alt - 1 : yabai -m space --focus general
 alt - 2 : yabai -m space --focus personal
-alt - 3 : yabai -m space --focus work
-alt - 4 : yabai -m space --focus media
-alt - 5 : yabai -m space --focus ai
+alt - 3 : yabai -m space --focus YS
+alt - 4 : yabai -m space --focus work
+alt - 5 : yabai -m space --focus media
+alt - 6 : yabai -m space --focus ai
 
 # Navigate to previous/next space
 alt - p : yabai -m space --focus prev
@@ -38,9 +39,10 @@ ctrl + alt - right : yabai -m space --focus next
 # Move window to specific space
 shift + alt - 1 : yabai -m window --space general
 shift + alt - 2 : yabai -m window --space personal
-shift + alt - 3 : yabai -m window --space work
-shift + alt - 4 : yabai -m window --space media
-shift + alt - 5 : yabai -m window --space ai
+shift + alt - 3 : yabai -m window --space YS
+shift + alt - 4 : yabai -m window --space work
+shift + alt - 5 : yabai -m window --space media
+shift + alt - 6 : yabai -m window --space ai
 
 # Move window to previous/next space and follow
 shift + alt - p : yabai -m window --space prev; yabai -m space --focus prev

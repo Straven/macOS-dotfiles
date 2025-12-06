@@ -9,7 +9,7 @@ function create_macos_dotfiles_layout -d "Create the macos-dotfiles tmux layout"
 
     # Split horizontally to create bottom pane (this becomes pane 1)
     # Using -p 10 to make it 10 rows (not columns) in height
-    tmux split-window -v -t "$SESSION_NAME" -c $PROJECT_PATH -l 10
+    tmux split-window -v -t "$SESSION_NAME" -c $PROJECT_PATH -p 10
 
     # Now we have:
     # Pane 0: top (neovim)

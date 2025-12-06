@@ -7,6 +7,8 @@ set -U FZF_CTRL_R_OPTS --reverse
 set -U FZF_TMUX_OPTS -p
 set -U FZF_DEFAULT_OPTS_FILE '$HOME/.config/fzf/.fzfrc'
 
+ulimit -n 10240
+
 function fish_title
     #    echo 🐈‍⬛ $argv[1] (pwd)
 end

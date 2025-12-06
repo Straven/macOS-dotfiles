@@ -63,7 +63,7 @@ SETUVAR fish_pager_color_selected_background:\x2d\x2dbackground\x3d76639e
 SETUVAR fish_pager_color_selected_completion:\x1d
 SETUVAR fish_pager_color_selected_description:\x1d
 SETUVAR fish_pager_color_selected_prefix:\x1d
-SETUVAR fish_user_paths:/Users/mykolasarry/\x2ecargo/bin\x1e/Users/mykolasarry/\x2elocal/bin\x1e/Users/mykolasarry/\x2econfig/bin\x1e/Users/mykolasarry/dotfiles/\x2econfig/bin\x1e/opt/homebrew/bin\x1e/Applications/Ghostty\x2eapp/Contents/MacOS
+SETUVAR fish_user_paths:/opt/homebrew/opt/postgresql\x4018/bin\x1e/Users/mykolasarry/\x2ecargo/bin\x1e/Users/mykolasarry/\x2elocal/bin\x1e/Users/mykolasarry/\x2econfig/bin\x1e/Users/mykolasarry/dotfiles/\x2econfig/bin\x1e/opt/homebrew/bin\x1e/Applications/Ghostty\x2eapp/Contents/MacOS
 SETUVAR pisces_pairs:\x28\x2c\x29\x1e\x5b\x2c\x5d\x1e\x7b\x2c\x7d\x1e\x22\x2c\x22\x1e\x27\x2c\x27
 SETUVAR sponge_allow_previously_successful:true
 SETUVAR sponge_delay:2

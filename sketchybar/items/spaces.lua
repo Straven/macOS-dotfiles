@@ -21,9 +21,10 @@ local spaces = {}
 local space_names = {
 	[1] = "G",
 	[2] = "P",
-	[3] = "W",
-	[4] = "M",
-	[5] = "AI",
+	[3] = "YS",
+	[4] = "W",
+	[5] = "M",
+	[6] = "AI",
 }
 
 local colors_spaces = {
@@ -32,6 +33,7 @@ local colors_spaces = {
 	[3] = colors.cmap_3,
 	[4] = colors.cmap_4,
 	[5] = colors.cmap_5,
+	[6] = colors.cmap_6,
 }
 
 for i = 1, 10, 1 do

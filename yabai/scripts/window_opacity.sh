@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define apps
-transparent_apps="^(Ghostty|Obsidian|Zed|Claude|Monica)$"
+transparent_apps="^(Ghostty|Obsidian|Zed|Claude|Monica|Firefox)$"
 opacity_value=0.75
 
 # Get focused window app name
