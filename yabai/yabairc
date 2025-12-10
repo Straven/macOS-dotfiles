@@ -3,7 +3,7 @@ sudo yabai --load-sa
 
 # Define variables
 non_transparent_apps="(Safari|Zen Browser|WhatsApp|Google Chrome|Microsoft Word|Microsoft Excel|Preview|Finder|Visual Studio Code|Spotify|Music|TV|Megogo|Notes|Microsoft PowerPoint)"
-transparent_apps="(Ghostty|Obsidian|Zed|Claude|Monica|Firefox)"
+transparent_apps="(Ghostty|Obsidian|Zed|Claude|Monica|Firefox|VSCodium)"
 opacity_value=0.75
 
 # ====== Global Settings ======

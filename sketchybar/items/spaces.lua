@@ -52,14 +52,14 @@ for i = 1, 10, 1 do
 			highlight_color = colors.tn_black3,
 		},
 		label = {
-			padding_right = 10,
+			padding_right = 5,
 			padding_left = 3,
 			color = colors_spaces[i],
 			font = "sketchybar-app-font-bg:Regular:21.0",
 			y_offset = -2,
 		},
-		padding_right = 4,
-		padding_left = 4,
+		padding_right = 2,
+		padding_left = 2,
 		background = {
 			color = colors.transparent,
 			height = 22,
@@ -140,6 +140,7 @@ sbar.add("bracket", {
 	spaces[3].name,
 	spaces[4].name,
 	spaces[5].name,
+	spaces[6].name,
 }, {
 	background = {
 		color = colors.background,
@@ -162,8 +163,8 @@ local spaces_indicator = sbar.add("item", {
 		border_width = 0,
 		corner_radius = 6,
 		height = 24,
-		padding_left = 6,
-		padding_right = 6,
+		padding_left = 3,
+		padding_right = 3,
 	},
 	icon = {
 		font = {
@@ -171,8 +172,8 @@ local spaces_indicator = sbar.add("item", {
 			style = settings.font.style_map["Bold"],
 			size = 14.0,
 		},
-		padding_left = 6,
-		padding_right = 9,
+		padding_left = 3,
+		padding_right = 5,
 		color = colors.accent1,
 		string = icons.switch.on,
 	},
@@ -215,17 +216,17 @@ spaces_indicator:subscribe("mouse.entered", function(env)
 				-- color = { alpha = 1.0 },
 				color = colors.tn_black1,
 				border_color = { alpha = 1.0 },
-				padding_left = 6,
-				padding_right = 6,
+				padding_left = 3,
+				padding_right = 3,
 			},
 			icon = {
 				color = colors.accent1,
-				padding_left = 6,
-				padding_right = 9,
+				padding_left = 3,
+				padding_right = 5,
 			},
 			label = { drawing = "off" },
-			padding_left = 6,
-			padding_right = 6,
+			padding_left = 3,
+			padding_right = 3,
 		})
 	end)
 end)
@@ -255,7 +256,7 @@ local front_app_icon = sbar.add("item", "front_app_icon", {
 	},
 	updates = true,
 	padding_right = 0,
-	padding_left = -10,
+	padding_left = -5,
 })
 
 -- disable front_app

@@ -49,6 +49,10 @@ local bracket = sbar.add("bracket", "widgets.cpu.bracket", { cpu_graph.name, cpu
 	background = { color = colors.tn_black3, border_color = colors.blue },
 })
 
+-- local bracket = sbar.add("bracket", "widgets.cpu.bracket", { cpu.name }, {
+-- 	background = { color = colors.tn_black3, border_color = colors.blue },
+-- })
+
 cpu_graph:subscribe("cpu_update", function(env)
 	-- Also available: env.user_load, env.sys_load
 	local load = tonumber(env.total_load)

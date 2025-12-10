@@ -37,12 +37,12 @@ ctrl + alt - right : yabai -m space --focus next
 # ====== Move Windows Between Spaces ======
 
 # Move window to specific space
-shift + alt - 1 : yabai -m window --space general
-shift + alt - 2 : yabai -m window --space personal
-shift + alt - 3 : yabai -m window --space YS
-shift + alt - 4 : yabai -m window --space work
-shift + alt - 5 : yabai -m window --space media
-shift + alt - 6 : yabai -m window --space ai
+shift + alt - 1 : yabai -m window --space general --focus
+shift + alt - 2 : yabai -m window --space personal --focus
+shift + alt - 3 : yabai -m window --space YS --focus
+shift + alt - 4 : yabai -m window --space work --focus
+shift + alt - 5 : yabai -m window --space media -- focus
+shift + alt - 6 : yabai -m window --space ai --focus
 
 # Move window to previous/next space and follow
 shift + alt - p : yabai -m window --space prev; yabai -m space --focus prev

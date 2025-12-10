@@ -18,6 +18,9 @@ if test -d /opt/homebrew
     eval (/opt/homebrew/bin/brew shellenv)
 end
 
+set -gx PATH $HOME/develop/flutter/bin $PATH
+# fish_add_path $HOME/develop/flutter/bin
+
 # Add local bin to PATH
 fish_add_path ~/.local/bin
 
