@@ -19,9 +19,9 @@ local spaces = {}
 -- }
 
 local space_names = {
-	[1] = "G",
+	[1] = "YS",
 	[2] = "P",
-	[3] = "YS",
+	[3] = "G",
 	[4] = "W",
 	[5] = "M",
 	[6] = "AI",

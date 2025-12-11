@@ -1,144 +1,159 @@
+# ==============================================================================
+# yabai Configuration
+# Clean version - deprecated commands removed
+# ==============================================================================
+
+# Load scripting addition
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 sudo yabai --load-sa
 
-# Define variables
+# Define variables for window opacity script
 non_transparent_apps="(Safari|Zen Browser|WhatsApp|Google Chrome|Microsoft Word|Microsoft Excel|Preview|Finder|Visual Studio Code|Spotify|Music|TV|Megogo|Notes|Microsoft PowerPoint)"
 transparent_apps="(Ghostty|Obsidian|Zed|Claude|Monica|Firefox|VSCodium)"
 opacity_value=0.75
 
-# ====== Global Settings ======
+# ==============================================================================
+# Global Settings
+# ==============================================================================
 
-# Layout mode - stack only (no BSP, no layout switching)
-yabai -m config layout stack
-yabai -m config window_topmost off
-# Window opacity - 75% for most apps, 100% for non-transparent apps
-yabai -m config window_shadow float
-yabai -m config window_opacity on
-yabai -m config window_opacity_duration 0.0
-yabai -m config active_window_opacity 1.0
-yabai -m config normal_window_opacity 1.0
+# Layout mode - stack only
+yabai -m config layout                       stack
+
+# Window opacity
+yabai -m config window_shadow                float
+yabai -m config window_opacity               on
+yabai -m config window_opacity_duration      0.0
+yabai -m config active_window_opacity        1.0
+yabai -m config normal_window_opacity        1.0
 
 # Mouse support
-yabai -m config mouse_follows_focus on
-yabai -m config focus_follows_mouse off
-yabai -m config mouse_modifier fn
-yabai -m config mouse_action1 move
-yabai -m config mouse_action2 resize
+yabai -m config mouse_follows_focus          on
+yabai -m config focus_follows_mouse          off
+yabai -m config mouse_modifier               fn
+yabai -m config mouse_action1                move
+yabai -m config mouse_action2                resize
+yabai -m config mouse_drop_action            swap
 
-# Window borders (disabled by default)
-yabai -m config window_border off
-# yabai -m config window_border_width 4
-# yabai -m config active_window_border_color 0xff81a1c1
-# yabai -m config normal_window_border_color 0xff3b4252
+# Window placement
+yabai -m config window_origin_display        default
+yabai -m config window_placement             second_child
+yabai -m config window_zoom_persist          on
 
-# Padding and gaps (minimal for stack mode)
-yabai -m config top_padding 7
-yabai -m config bottom_padding 7
-yabai -m config left_padding 7
-yabai -m config right_padding 7
-yabai -m config window_gap 7
+# Split settings
+yabai -m config split_ratio                  0.50
+yabai -m config split_type                   auto
+yabai -m config auto_balance                 off
 
-# External bar support (for sketchybar)
-yabai -m config external_bar all:48:0
+# Padding and gaps
+yabai -m config top_padding                  7
+yabai -m config bottom_padding               7
+yabai -m config left_padding                 7
+yabai -m config right_padding                7
+yabai -m config window_gap                   7
 
-# ====== Space Configuration ======
+# External bar support (for SketchyBar)
+yabai -m config external_bar                 all:48:0
 
-# Set space labels (5 spaces required)
-yabai -m space 1 --label general
+# Insert feedback color (for visual feedback when moving windows)
+yabai -m config insert_feedback_color        0xffd75f5f
+
+# ==============================================================================
+# Space Configuration
+# ==============================================================================
+
+# Set space labels
+yabai -m space 1 --label YS
 yabai -m space 2 --label personal
-yabai -m space 3 --label YS
+yabai -m space 3 --label general
 yabai -m space 4 --label work
 yabai -m space 5 --label media
 yabai -m space 6 --label ai
 
-# ====== Application Rules ======
+# ==============================================================================
+# Application Rules - YS Workspace (Development)
+# ==============================================================================
 
-# Personal space apps
 yabai -m rule --add app="^Ghostty$" space=YS
-yabai -m rule --add app="^Safari$" space=personal
 yabai -m rule --add app="^Zed$" space=YS
-yabai -m rule --add app="^Zen Browser$" space=personal
 yabai -m rule --add app="^VSCodium$" space=YS
 yabai -m rule --add app="^Visual Studio Code$" space=YS
 yabai -m rule --add app="^Obsidian$" space=YS
-
-# Work space apps
-yabai -m rule --add app="^Microsoft Word$" space=work
-yabai -m rule --add app="^Microsoft Excel$" space=work
-yabai -m rule --add app="^Notes$" space=work
-yabai -m rule --add app="^Microsoft PowerPoint$" space=work
-yabai -m rule --add app="^Google Chrome$" space=work
 yabai -m rule --add app="^Firefox$" space=YS
 
-# Media space apps
+# ==============================================================================
+# Application Rules - Personal Workspace
+# ==============================================================================
+
+yabai -m rule --add app="^Safari$" space=personal
+yabai -m rule --add app="^Zen Browser$" space=personal
+
+# ==============================================================================
+# Application Rules - Work Workspace
+# ==============================================================================
+
+yabai -m rule --add app="^Microsoft Word$" space=work
+yabai -m rule --add app="^Microsoft Excel$" space=work
+yabai -m rule --add app="^Microsoft PowerPoint$" space=work
+yabai -m rule --add app="^Notes$" space=work
+yabai -m rule --add app="^Google Chrome$" space=work
+
+# ==============================================================================
+# Application Rules - Media Workspace
+# ==============================================================================
+
 yabai -m rule --add app="^Spotify$" space=media
 yabai -m rule --add app="^Music$" space=media
 yabai -m rule --add app="^TV$" space=media
 yabai -m rule --add app="^Megogo$" space=media
 
-# AI space apps
+# ==============================================================================
+# Application Rules - AI Workspace
+# ==============================================================================
+
 yabai -m rule --add app="^Claude$" space=ai
 yabai -m rule --add app="^Monica$" space=ai
 
-# ====== Float Rules ======
+# ==============================================================================
+# Float Rules - System Apps
+# ==============================================================================
 
-# System apps that should always float
 yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^System Preferences$" manage=off
 yabai -m rule --add app="^System Information$" manage=off
 yabai -m rule --add app="^Activity Monitor$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off
-yabai -m rule --add app="^Finder$" title="(Copy|Connect|Move|Info|Pref)" manage=off
 yabai -m rule --add app="^Archive Utility$" manage=off
 yabai -m rule --add app="^Disk Utility$" manage=off
 yabai -m rule --add app="^App Store$" manage=off
 yabai -m rule --add app="^Time Machine$" manage=off
 
-# Float preferences windows
+# Finder dialogs
+yabai -m rule --add app="^Finder$" title="(Copy|Connect|Move|Info|Pref)" manage=off
+
+# Generic preferences/settings windows
 yabai -m rule --add title="^Preferences$" manage=off
 yabai -m rule --add title="^Settings$" manage=off
 
-# ====== Signals ======
+# ==============================================================================
+# Signals - SketchyBar Integration
+# ==============================================================================
 
-# Refresh sketchybar when space/window changes
+# SketchyBar triggers
 yabai -m signal --add event=space_changed action="sketchybar --trigger space_change"
 yabai -m signal --add event=display_changed action="sketchybar --trigger display_change"
 yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
 yabai -m signal --add event=window_title_changed action="sketchybar --trigger title_change"
 
-# Apply selective opacity to windows
+# ==============================================================================
+# Signals - Window Opacity Script
+# ==============================================================================
+
+# Apply selective opacity to windows (your custom script)
 yabai -m signal --add event=window_focused action="$HOME/.config/yabai/scripts/window_opacity.sh"
 yabai -m signal --add event=window_created action="$HOME/.config/yabai/scripts/window_opacity.sh"
 
-###############################################################################
-#                                Defaults
-###############################################################################
+# ==============================================================================
+# End of Configuration
+# ==============================================================================
 
-yabai -m config \
-	focus_follows_mouse off \
-	window_origin_display default \
-	window_placement second_child \
-	window_zoom_persist on \
-	window_shadow off \
-	window_animation_duration 2 \
-	window_animation_frame_rate 120 \
-	window_opacity_duration 0.0 \
-	insert_feedback_color 0xffd75f5f \
-	active_window_border_color 0xff775759 \
-	normal_window_border_color 0xff555555 \
-	window_border_width 4 \
-	window_border_radius 12 \
-	window_border_blur off \
-	window_border_hidpi on \
-	window_border off \
-	split_ratio 0.50 \
-	split_type auto \
-	auto_balance off \
-	window_gap 06 \
-	layout stack \
-	mouse_modifier fn \
-	mouse_action1 move \
-	mouse_action2 resize \
-	mouse_drop_action swap
-
-echo "yabai configuration loaded successfully"# Padding and gaps
+echo "yabai configuration loaded successfully"

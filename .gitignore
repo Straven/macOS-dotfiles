@@ -4,6 +4,9 @@ fzf/
 tmux/plugins/
 neovim/lua/plugins/dev.lua
 
+aerospace/
+hammerspoon/
+
 ### Backup ###
 *.bak
 *.gho

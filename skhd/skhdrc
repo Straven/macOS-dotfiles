@@ -19,9 +19,9 @@ alt - r : yabai -m window --focus recent
 # ====== Space Navigation ======
 
 # Switch between spaces (1-5)
-alt - 1 : yabai -m space --focus general
+alt - 1 : yabai -m space --focus YS
 alt - 2 : yabai -m space --focus personal
-alt - 3 : yabai -m space --focus YS
+alt - 3 : yabai -m space --focus general
 alt - 4 : yabai -m space --focus work
 alt - 5 : yabai -m space --focus media
 alt - 6 : yabai -m space --focus ai
@@ -112,9 +112,9 @@ ctrl + shift + alt - 3 : yabai -m window --display 3; yabai -m display --focus 3
 # ====== Service Management ======
 
 # Restart yabai
-ctrl + alt + cmd - y : ~/.config/yabai/yabai-restart.sh
+ctrl + alt + cmd - y : ~/.config/yabai/yabai-restart.sh && osascript -e 'display notification "Yabai restarted" with title "Configuration"'
 ctrl + alt + cmd - s : brew services restart sketchybar && osascript -e 'display notification "SketchyBar restarted" with title "Configuration"'
-ctrl + alt + cmd - k : skhd --reload && osascript -e 'display notification "skhd reloaded" with title "Configuration"'
+ctrl + alt + cmd - k : skhd --restart-service && osascript -e 'display notification "skhd reloaded" with title "Configuration"'
 
 # ====== Quick Actions ======
 
@@ -135,7 +135,7 @@ alt - c : yabai -m window --toggle float; yabai -m window --grid 6:6:1:1:4:4
 # =============================================================================
 
 # Primary applications (focus if running, launch if not)
-cmd + alt - t : ~/.config/skhd/scripts/smart_launch.sh "Ghostty" 
+cmd + alt - t : ~/.config/skhd/scripts/smart_launch.sh "Ghostty"
 cmd + alt - o : ~/.config/skhd/scripts/smart_launch.sh "Obsidian"
 cmd + alt - b : ~/.config/skhd/scripts/smart_launch.sh "Safari"
 cmd + alt - z : ~/.config/skhd/scripts/smart_launch.sh "Zed"
