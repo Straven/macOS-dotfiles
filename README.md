@@ -24,13 +24,13 @@ terminal power.
 
 ### Window Management
 
-- **[yabai](https://github.com/koekeishiya/yabai)** - Tiling window manager for
+- **[yabai](https://github.com/asmvik/yabai)** - Tiling window manager for
   macOS
-- **[skhd](https://github.com/koekeishiya/skhd)** - Simple hotkey daemon for
+- **[skhd.zig](https://github.com/jackielii/skhd.zig)** - Simple hotkey daemon for
   macOS
 - **[sketchybar](https://github.com/FelixKratz/SketchyBar)** - Custom menu bar
   replacement
-- **[borders](https://github.com/FelixKratz/borders)** - Window border system
+- **[borders](https://github.com/FelixKratz/borders)** - Window border system.
 
 ### Terminal & Shell
 

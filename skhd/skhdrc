@@ -130,6 +130,10 @@ alt - i : yabai -m window --toggle float; yabai -m window --grid 6:6:4:0:2:2
 # Center floating window
 alt - c : yabai -m window --toggle float; yabai -m window --grid 6:6:1:1:4:4
 
+f1 : ~/.config/yabai/scripts/opacity_control.sh toggle
+# cmd + ctrl - + : "~/.config/yabai/scripts/opacity_control.sh increase"
+# cmd + ctrl - - : "~/.config/yabai/scripts/opacity_control.sh decrease"
+
 # =============================================================================
 # APPLICATION LAUNCHERS
 # =============================================================================
