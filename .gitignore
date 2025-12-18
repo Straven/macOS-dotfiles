@@ -3,6 +3,9 @@ kitty/
 fzf/
 tmux/plugins/
 neovim/lua/plugins/dev.lua
+zed/settings.json
+zed/conversations/
+zed/prompts/
 
 aerospace/
 hammerspoon/

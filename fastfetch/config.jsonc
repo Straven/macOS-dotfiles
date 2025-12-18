@@ -2,14 +2,14 @@
   "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
   "logo": {
     //"type": "kitty-direct",
-    "type": "none",
+    "type": "kitty-icat",
     //"source": "Users/mykolasarry/OneDrive/StravenConfigs/dotfiles/macos-dotfiles/fastfetch/ys1-blush-nobg.png",
     //"source": "~/.config/fastfetch/eldritch.png",
     "source": "~/.config/fastfetch/ys1-blush-nobg.png",
     "padding": {
-      "right": 15,
-      "top": 6
-    }
+      "right": 5,
+      "top": 6,
+    },
   },
   "display": {
     "separator": " ",
@@ -153,5 +153,5 @@
       "format": "└──────────────────────────────────┘",
       "outputColor": "cyan",
     },
-      ],
+  ],
 }

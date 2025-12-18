@@ -9,9 +9,9 @@ set -U FZF_DEFAULT_OPTS_FILE '$HOME/.config/fzf/.fzfrc'
 
 ulimit -n 10240
 
-function fish_title
+#function fish_title
     #    echo 🐈‍⬛ $argv[1] (pwd)
-end
+    #end
 
 # Homebrew
 if test -d /opt/homebrew
@@ -47,6 +47,8 @@ carapace _carapace | source
 if status is-interactive
     and not set -q TMUX
     and test "$TERM_PROGRAM" = ghostty
+    and not set -q __home_screen_launched
+    set -g __home_screen_launched 1
     launch_homescreen
 end
 

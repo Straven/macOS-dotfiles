@@ -1,149 +1,84 @@
-#
-# skhd configuration for yabai integration
-# Stack mode with per-window float toggle
-#
+# ============================================
+# MODAL SYSTEM - Application Launcher
+# ============================================
 
-# ====== Focus Windows in Stack ======
+:: appmode
 
-# Cycle through windows in current stack
-alt - j : yabai -m window --focus stack.next || yabai -m window --focus stack.first
-alt - k : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
+# Enter app mode with Hyper+A
+hyper - a ; appmode
 
-# Alternative: use tab for cycling
-alt - tab : yabai -m window --focus stack.next || yabai -m window --focus stack.first
-alt + shift - tab : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
+# Exit app mode with Escape
+appmode < escape ; default
 
-# Focus recent window
-alt - r : yabai -m window --focus recent
+# APP LAUNCHER BINDINGS (exit to default after opening)
+appmode < g ; default : open -a Ghostty
+appmode < o ; default : open -a Obsidian
+appmode < b ; default : open -a Safari
+appmode < z ; default : open -a Zed
+appmode < v ; default : open -a VSCodium
+appmode < n ; default : open -a Notes
+appmode < f ; default : open -a Firefox
+appmode < w ; default : open -a Wallabag
+appmode < s ; default : open -a Spotify
+appmode < m ; default : open -a Music
+appmode < c ; default : open -a Claude
 
-# ====== Space Navigation ======
+# ============================================
+# RELOAD MODE
+# ============================================
 
-# Switch between spaces (1-5)
-alt - 1 : yabai -m space --focus YS
-alt - 2 : yabai -m space --focus personal
-alt - 3 : yabai -m space --focus general
-alt - 4 : yabai -m space --focus work
-alt - 5 : yabai -m space --focus media
-alt - 6 : yabai -m space --focus ai
+:: reloadmode
 
-# Navigate to previous/next space
-alt - p : yabai -m space --focus prev
-alt - n : yabai -m space --focus next
+# Enter reload mode with Hyper+R
+hyper - r ; reloadmode
 
-# Alternative: use arrows
-ctrl + alt - left : yabai -m space --focus prev
-ctrl + alt - right : yabai -m space --focus next
+# Exit reload mode
+reloadmode < escape ; default
 
-# ====== Move Windows Between Spaces ======
+# Reload skhd with 's' (exit to default after)
+reloadmode < s ; default : skhd --restart-service && osascript -e 'display notification "skhd reloaded" with title "Configuration"'
 
-# Move window to specific space
-shift + alt - 1 : yabai -m window --space general --focus
-shift + alt - 2 : yabai -m window --space personal --focus
-shift + alt - 3 : yabai -m window --space YS --focus
-shift + alt - 4 : yabai -m window --space work --focus
-shift + alt - 5 : yabai -m window --space media -- focus
-shift + alt - 6 : yabai -m window --space ai --focus
+# ============================================
+# SPACE MODE - Native macOS Spaces
+# ============================================
 
-# Move window to previous/next space and follow
-shift + alt - p : yabai -m window --space prev; yabai -m space --focus prev
-shift + alt - n : yabai -m window --space next; yabai -m space --focus next
+:: spacemode
 
-# Move window to space without following
-ctrl + shift + alt - p : yabai -m window --space prev
-ctrl + shift + alt - n : yabai -m window --space next
+# Enter space mode with Hyper+S
+hyper - s ; spacemode
 
-# ====== Window Management ======
+# Exit space mode
+spacemode < escape ; default
 
-# Toggle window float (per-window: stack ↔ float)
-alt - t : yabai -m window --toggle float; yabai -m window --grid 4:4:1:1:2:2
+# Switch to spaces - use command to forward key AND exit mode
+spacemode < 1 : skhd -k "ctrl - 1" && skhd -k "escape"
+spacemode < 2 : skhd -k "ctrl - 2" && skhd -k "escape"
+spacemode < 3 : skhd -k "ctrl - 3" && skhd -k "escape"
+spacemode < 4 : skhd -k "ctrl - 4" && skhd -k "escape"
+spacemode < 5 : skhd -k "ctrl - 5" && skhd -k "escape"
+spacemode < 6 : skhd -k "ctrl - 6" && skhd -k "escape"
+spacemode < 7 : skhd -k "ctrl - 7" && skhd -k "escape"
+spacemode < 8 : skhd -k "ctrl - 8" && skhd -k "escape"
+spacemode < 9 : skhd -k "ctrl - 9" && skhd -k "escape"
 
-# Toggle window fullscreen
-alt - f : yabai -m window --toggle zoom-fullscreen
+# Navigate with arrow keys
+spacemode < left : skhd -k "ctrl - left" && skhd -k "escape"
+spacemode < right : skhd -k "ctrl - right" && skhd -k "escape"
 
-# Toggle window native fullscreen
-shift + alt - f : yabai -m window --toggle native-fullscreen
+# ============================================
+# WINDOW MODE - Window Management
+# ============================================
 
-# Rotate windows in stack
-shift + alt - r : yabai -m space --rotate 90
+:: winmode
 
-# Balance window sizes
-shift + alt - 0 : yabai -m space --balance
+# Enter window mode with Hyper+W
+hyper - w ; winmode
 
-# ====== Stack Management ======
+# Exit window mode
+winmode < escape ; default
 
-# Add window to stack from adjacent direction
-shift + alt - left : yabai -m window west --stack $(yabai -m query --windows --window | jq -r '.id')
-shift + alt - down : yabai -m window south --stack $(yabai -m query --windows --window | jq -r '.id')
-shift + alt - up : yabai -m window north --stack $(yabai -m query --windows --window | jq -r '.id')
-shift + alt - right : yabai -m window east --stack $(yabai -m query --windows --window | jq -r '.id')
+# Fill window - exit to default after
+winmode < f ; default : skhd -k "ctrl + fn - f"
 
-# ====== Window Resizing ======
-
-# Increase window size (for floating windows)
-shift + alt - a : yabai -m window --resize left:-20:0
-shift + alt - s : yabai -m window --resize bottom:0:20
-shift + alt - w : yabai -m window --resize top:0:-20
-shift + alt - d : yabai -m window --resize right:20:0
-
-# Decrease window size (for floating windows)
-shift + cmd - a : yabai -m window --resize left:20:0
-shift + cmd - s : yabai -m window --resize bottom:0:-20
-shift + cmd - w : yabai -m window --resize top:0:20
-shift + cmd - d : yabai -m window --resize right:-20:0
-
-# ====== Window Focus (Directional) ======
-
-# Focus window in direction (for floating windows)
-alt - h : yabai -m window --focus west
-alt - l : yabai -m window --focus east
-
-# ====== Display Management ======
-
-# Focus display
-ctrl + alt - 1 : yabai -m display --focus 1
-ctrl + alt - 2 : yabai -m display --focus 2
-ctrl + alt - 3 : yabai -m display --focus 3
-
-# Move window to display
-ctrl + shift + alt - 1 : yabai -m window --display 1; yabai -m display --focus 1
-ctrl + shift + alt - 2 : yabai -m window --display 2; yabai -m display --focus 2
-ctrl + shift + alt - 3 : yabai -m window --display 3; yabai -m display --focus 3
-
-# ====== Service Management ======
-
-# Restart yabai
-ctrl + alt + cmd - y : ~/.config/yabai/yabai-restart.sh && osascript -e 'display notification "Yabai restarted" with title "Configuration"'
-ctrl + alt + cmd - s : brew services restart sketchybar && osascript -e 'display notification "SketchyBar restarted" with title "Configuration"'
-ctrl + alt + cmd - k : skhd --restart-service && osascript -e 'display notification "skhd reloaded" with title "Configuration"'
-
-# ====== Quick Actions ======
-
-# Close window
-alt - w : yabai -m window --close
-
-# Minimize window
-alt - m : yabai -m window --minimize
-
-# Picture-in-Picture mode (small floating window)
-alt - i : yabai -m window --toggle float; yabai -m window --grid 6:6:4:0:2:2
-
-# Center floating window
-alt - c : yabai -m window --toggle float; yabai -m window --grid 6:6:1:1:4:4
-
-f1 : ~/.config/yabai/scripts/opacity_control.sh toggle
-# cmd + ctrl - + : "~/.config/yabai/scripts/opacity_control.sh increase"
-# cmd + ctrl - - : "~/.config/yabai/scripts/opacity_control.sh decrease"
-
-# =============================================================================
-# APPLICATION LAUNCHERS
-# =============================================================================
-
-# Primary applications (focus if running, launch if not)
-cmd + alt - t : ~/.config/skhd/scripts/smart_launch.sh "Ghostty"
-cmd + alt - o : ~/.config/skhd/scripts/smart_launch.sh "Obsidian"
-cmd + alt - b : ~/.config/skhd/scripts/smart_launch.sh "Safari"
-cmd + alt - z : ~/.config/skhd/scripts/smart_launch.sh "Zed"
-cmd + alt - f : ~/.config/skhd/scripts/smart_launch.sh "Finder"
-cmd + alt - c : ~/.config/skhd/scripts/smart_launch.sh "Claude"
-cmd + alt - n : ~/.config/skhd/scripts/smart_launch.sh "Notes"
-cmd + alt - s : ~/.config/skhd/scripts/smart_launch.sh "Spotify"
+# Center window - exit to default after
+winmode < c ; default : skhd -k "ctrl + fn - c"
