@@ -1,0 +1,25 @@
+# Tokyo Night Flash Goddess Storm
+
+# Syntax Highlighting Colors
+fish_color_normal DED09F
+fish_color_command 9D7CD8
+fish_color_keyword 9D7CD8
+fish_color_quote D56920
+fish_color_redirection DED09F
+fish_color_end D56920
+fish_color_option 9D7CD8
+fish_color_error 822F36
+fish_color_param 9D7CD8
+fish_color_comment 95613C
+fish_color_selection --background=4B233E
+fish_color_search_match --background=4B233E
+fish_color_operator 8D8442
+fish_color_escape 9D7CD8
+fish_color_autosuggestion 95613C
+
+# Completion Pager Colors
+fish_pager_color_progress 95613C
+fish_pager_color_prefix 9D7CD8
+fish_pager_color_completion DED09F
+fish_pager_color_description 95613C
+fish_pager_color_selected_background --background=4B233E

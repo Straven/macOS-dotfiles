@@ -1,0 +1,30 @@
+return {
+  "mason-org/mason-lspconfig.nvim",
+  opts = {
+    ensure_installed = {
+      "css_variables",
+      "cssls",
+      "cssmodules_ls",
+      "fish_lsp",
+      "gitlab_ci_ls",
+      "gopls",
+      "graphql",
+      "html",
+      "htmx",
+      "jsonls",
+      "julials",
+      "lua_ls",
+      "markdown_oxide",
+      "marksman",
+      "pyright",
+      "rust_analyzer",
+      "stylua",
+      "svelte",
+      "yamlls",
+    },
+  },
+  dependencies = {
+    "mason-org/mason.nvim",
+    "neovim/nvim-lspconfig",
+  },
+}

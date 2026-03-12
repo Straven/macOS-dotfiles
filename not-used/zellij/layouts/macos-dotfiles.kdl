@@ -1,0 +1,16 @@
+layout {
+    tab name="editor" focus=true {
+        pane split_direction="horizontal" {
+            pane name="nvim" size="80%" {
+                command "nvim"
+                args "."
+            }
+            pane name="shell" {
+                command "nu"
+            }
+        }
+    }
+    tab name="git" {
+        pane { command "nu"; }
+    }
+}

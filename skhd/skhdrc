@@ -1,0 +1,85 @@
+# ============================================
+# MODAL SYSTEM - Application Launcher
+# ============================================
+
+# :: appmode
+
+# Enter app mode with Hyper+A
+# hyper - a ; appmode
+
+# Exit app mode with Escape
+# appmode < escape ; default
+
+# APP LAUNCHER BINDINGS (exit to default after opening)
+# appmode < g ; default : open -a Ghostty
+# appmode < o ; default : open -a Obsidian
+# appmode < b ; default : open -a Safari
+# appmode < z ; default : open -a Zed
+# appmode < v ; default : open -a VSCodium
+# appmode < n ; default : open -a Notes
+# appmode < f ; default : open -a Firefox
+# appmode < w ; default : open -a Wallabag
+# appmode < s ; default : open -a Spotify
+# appmode < m ; default : open -a Music
+# appmode < c ; default : open -a Claude
+# appmode < h ; default : open -a NAPS2
+
+# ============================================
+# RELOAD MODE
+# ============================================
+
+# :: reloadmode
+
+# Enter reload mode with Hyper+R
+# hyper - r ; reloadmode
+
+# Exit reload mode
+# reloadmode < escape ; default
+
+# Reload skhd with 's' (exit to default after)
+# reloadmode < s ; default : skhd --restart-service && osascript -e 'display notification "skhd reloaded" with title "Configuration"'
+
+# ============================================
+# SPACE MODE - Native macOS Spaces
+# ============================================
+
+# :: spacemode
+
+# Enter space mode with Hyper+S
+# hyper - s ; spacemode
+
+# Exit space mode
+# spacemode < escape ; default
+
+# Switch to spaces - use command to forward key AND exit mode
+# spacemode < 1 : skhd -k "ctrl - 1" && skhd -k "escape"
+# spacemode < 2 : skhd -k "ctrl - 2" && skhd -k "escape"
+# spacemode < 3 : skhd -k "ctrl - 3" && skhd -k "escape"
+# spacemode < 4 : skhd -k "ctrl - 4" && skhd -k "escape"
+# spacemode < 5 : skhd -k "ctrl - 5" && skhd -k "escape"
+# spacemode < 6 : skhd -k "ctrl - 6" && skhd -k "escape"
+# spacemode < 7 : skhd -k "ctrl - 7" && skhd -k "escape"
+# spacemode < 8 : skhd -k "ctrl - 8" && skhd -k "escape"
+# spacemode < 9 : skhd -k "ctrl - 9" && skhd -k "escape"
+
+# Navigate with arrow keys
+# spacemode < left : skhd -k "ctrl - left" && skhd -k "escape"
+# spacemode < right : skhd -k "ctrl - right" && skhd -k "escape"
+
+# ============================================
+# WINDOW MODE - Window Management
+# ============================================
+
+# :: winmode
+
+# Enter window mode with Hyper+W
+# hyper - w ; winmode
+
+# Exit window mode
+# winmode < escape ; default
+
+# Fill window - exit to default after
+# winmode < f ; default : skhd -k "ctrl + fn - f"
+
+# Center window - exit to default after
+# winmode < c ; default : skhd -k "ctrl + fn - c"

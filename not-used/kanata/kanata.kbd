@@ -1,0 +1,21 @@
+(defcfg
+  ;; For Macos
+  process-unmapped-keys yes
+  danger-enable-cmd yes
+)
+
+(defsrc
+  caps
+  rctl
+)
+
+(defalias
+  ;; Hyper key
+  hyper (multi lmet lctl lalt lsft)
+)
+
+(deflayer base
+  @hyper
+  fn
+)
+

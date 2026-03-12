@@ -1,0 +1,93 @@
+keybinds clear-defaults=true {
+    normal {
+        bind "Ctrl a" { SwitchToMode "tmux"; }
+    }
+    tmux {
+        // Vim-style navigation
+        bind "h" { MoveFocus "Left"; SwitchToMode "Normal"; }
+        bind "j" { MoveFocus "Down"; SwitchToMode "Normal"; }
+        bind "k" { MoveFocus "Up"; SwitchToMode "Normal"; }
+        bind "l" { MoveFocus "Right"; SwitchToMode "Normal"; }
+
+        bind "n" { GoToNextTab; SwitchToMode "Normal"; }
+        bind "p" { GoToPreviousTab; SwitchToMode "Normal"; }
+bind "1" { GoToTab 1; SwitchToMode "Normal"; }
+bind "2" { GoToTab 2; SwitchToMode "Normal"; }
+
+        // Splits — same as your tmux | and -
+        bind "|" { NewPane "Right"; SwitchToMode "Normal"; }
+        bind "-" { NewPane "Down"; SwitchToMode "Normal"; }
+
+        // New tab
+        bind "c" { NewTab; SwitchToMode "Normal"; }
+
+        // Resize — your H/J/K/L
+        bind "H" { Resize "Increase Left"; }
+        bind "J" { Resize "Increase Down"; }
+        bind "K" { Resize "Increase Up"; }
+        bind "L" { Resize "Increase Right"; }
+
+        // Kill pane
+        bind "x" { CloseFocus; SwitchToMode "Normal"; }
+        bind "q" { CloseFocus; SwitchToMode "Normal"; }
+
+        // Detach
+        bind "d" { Detach; }
+
+        // Session picker — replaces your sesh fzf popup
+        bind "F" { LaunchOrFocusPlugin "session-manager" { floating true; }; SwitchToMode "Normal"; }
+
+        // Scroll/copy mode
+        bind "[" { SwitchToMode "Scroll"; }
+
+        bind "Esc" "Ctrl a" { SwitchToMode "Normal"; }
+    }
+    scroll {
+        bind "j" "Down" { ScrollDown; }
+        bind "k" "Up" { ScrollUp; }
+        bind "Ctrl d" { HalfPageScrollDown; }
+        bind "Ctrl u" { HalfPageScrollUp; }
+        bind "v" { SwitchToMode "EnterSearch"; SearchInput 0; }
+        bind "q" "Esc" { SwitchToMode "Normal"; }
+    }
+    entersearch {
+        bind "Enter" { SwitchToMode "Search"; }
+        bind "Esc" { SwitchToMode "Scroll"; }
+    }
+    search {
+        bind "n" { Search "down"; }
+        bind "N" { Search "up"; }
+        bind "q" "Esc" { SwitchToMode "Normal"; }
+    }
+    shared_except "normal" "locked" {
+        bind "Ctrl q" { Quit; }
+    }
+}
+
+theme "tokyo-night-flash-goddess-storm"
+
+themes {
+    tokyo-night-flash-goddess-storm {
+        fg 222 208 159
+        bg 36  40  59
+        black 32  40  37
+        red 130 47  54
+        green 141 132 66
+        yellow 213 105 32
+        blue 157 124 216
+        magenta 157 124 216
+        cyan 168 142 113
+        white 192 205 204
+        orange 213 105 32
+    }
+}
+
+default_shell "nu"
+session_serialization true
+pane_frames false
+auto_layout true
+mouse_mode true
+copy_on_select true
+copy_command "pbcopy"
+default_layout "homescreen"
+passthrough true

@@ -1,0 +1,13 @@
+clear
+which nu
+zellij kill-all-sessions
+$env.XDG_CONFIG_HOME
+ln -s ~/Library/CloudStorage/OneDrive-Personal/StravenConfigs/dotfiles/macos-dotfiles/nushell ~/Library/"Application Support"/nushell
+ls "~/Library/Application Support/nushell"
+ln -s ~/Library/CloudStorage/OneDrive-Personal/StravenConfigs/dotfiles/macos-dotfiles/nushell ~/Library/"Application Support"/nushell
+rm -rf ~/Library/"Application Support"/nushell
+ln -s ~/Library/CloudStorage/OneDrive-Personal/StravenConfigs/dotfiles/macos-dotfiles/nushell ~/Library/"Application Support"/nushell
+ls ~/Library/"Application Support"/ | where name =~ nushell
+bash -c 'ln -s ~/Library/CloudStorage/OneDrive-Personal/StravenConfigs/dotfiles/macos-dotfiles/nushell ~/Library/"Application Support"/nushell'
+bash -c 'rm ~/Library/"Application Support"/nushell/config.nu && ln -s ~/Library/CloudStorage/OneDrive-Personal/StravenConfigs/dotfiles/macos-dotfiles/nushell/config.nu ~/Library/"Application Support"/nushell/config.nu'
+bash -c 'rm ~/Library/"Application Support"/nushell/env.nu && ln -s ~/Library/CloudStorage/OneDrive-Personal/StravenConfigs/dotfiles/macos-dotfiles/nushell/env.nu ~/Library/"Application Support"/nushell/env.nu'

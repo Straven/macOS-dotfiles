@@ -1,0 +1,168 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+$directory\
+$username\
+$hostname\
+$git_branch\
+$git_state\
+$git_status\
+$git_commit\
+$aws\
+$nodejs\
+$python\
+$rust\
+$golang\
+$docker_context\
+$package\
+$line_break\
+$character"""
+
+# Right side of the prompt
+right_format = "$cmd_duration $time $battery"
+
+add_newline = true
+
+[character]
+success_symbol = "[🐈‍⬛->](bold #8D8442)"
+error_symbol = "[🐈‍⬛->](bold #822F36)"
+vicmd_symbol = "[🐈‍⬛❮](bold #D56920)"
+
+[battery]
+full_symbol = '🔋 '
+charging_symbol = '⚡️ '
+discharging_symbol = '💀 '
+
+[[battery.display]]
+threshold = 15
+style = 'bold #822F36'
+discharging_symbol = '💀 '
+
+[[battery.display]]
+threshold = 30
+style = 'bold #D56920'
+
+[[battery.display]]
+threshold = 100
+
+[directory]
+style = "#9D7CD8 bold"
+format = "[ ]($style)[$path]($style) "
+truncation_length = 3
+truncation_symbol = "…/"
+read_only = " "
+read_only_style = "#822F36"
+
+[username]
+style_user = "#8D8442 bold"
+style_root = "#822F36 bold"
+format = '[\[$user\]]($style)' #Remove '\[' or '\]' if you do not want brackets
+show_always = true
+
+[hostname]
+format = "[@$hostname:](#8D8442 bold)"
+ssh_only = true
+
+[git_branch]
+symbol = " "
+style = "#9D7CD8 bold"
+format = '[$symbol$branch·]($style)'
+
+[git_status]
+style = "#9D7CD8 bold"
+ahead = '⇡${count}'
+diverged = '⇕⇡${ahead_count}⇣${behind_count}'
+behind = '⇣${count}'
+
+[git_commit]
+style = "#9D7CD8 bold"
+commit_hash_length = 4
+tag_symbol = '🔖 '
+
+[git_state]
+style = "#9D7CD8 bold"
+format = '\([$state( $progress_current of $progress_total)]($style)\) '
+
+[nodejs]
+symbol = "⬢ "
+style = "#8D8442"
+format = "[$symbol($version)]($style) "
+
+[lua]
+format = 'via [🌕 $version](bold #9D7CD8) '
+
+[python]
+symbol = " "
+style = "#9D7CD8"
+format = "[$symbol($version)]($style) "
+
+[rust]
+symbol = "🦀 "
+style = "#822F36"
+format = "[$symbol($version)]($style) "
+
+[golang]
+symbol = " "
+style = "#A88E71"
+format = "[$symbol($version)]($style) "
+
+[docker_context]
+symbol = "🐳 "
+style = "#9D7CD8 bold"
+format = "[$symbol$context]($style) "
+
+[terraform]
+format = '[🏎💨 $workspace]($style) '
+
+[aws]
+format = "on [$symbol($profile)(($region))]($style) "
+symbol = "  "
+style = "bold #D56920"
+disabled = true
+[aws.region_aliases]
+ap-southeast-2 = 'au'
+us-east-1 = 'va'
+
+[azure]
+disabled = false
+format = "on [$symbol($username)]($style) "
+symbol = "󰠅 "
+style = "#9D7CD8 bold"
+
+[package]
+symbol = "📦 "
+style = "#D56920 bold"
+format = "[$symbol$version]($style) "
+
+# [cmd_duration]
+# disabled = false
+# show_notifications = true
+# min_time_to_notify = 3_000
+# min_time = 1_0
+# show_milliseconds = true
+# format = '[⏱ $duration]($style) '
+# style = "#D56920 bold"
+
+[time]
+disabled = false
+time_format = "%e-%B-%Y %R"                            # Hour:Minute Format
+style = "bg:#202825"
+format = '[[  $time ](fg:#A88E71 bg:#202825)]($style)'
+
+[memory_usage]
+symbol = "󰍛 "
+format = '\[$symbol[$ram( | $swap)]($style)\]'
+
+[os]
+format = '\[[$symbol]($style)\]'
+
+[status]
+format = '[$symbol$common_meaning$signal_name]($style) '
+style = '#9D7CD8'
+symbol = '❌'
+success_symbol = '🟢'
+not_executable_symbol = '🚫'
+not_found_symbol = '🔍'
+sigint_symbol = '🧱'
+signal_symbol = '⚡'
+disabled = false

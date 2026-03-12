@@ -1,0 +1,285 @@
+# ============================================================
+# AeroSpace Configuration
+# Based on i3-like config: https://nikitabobko.github.io/AeroSpace/goodies#i3-like-config
+#
+# Binding philosophy:
+#   Main mode  — zero alt- bindings; only Hyper triggers + system overrides
+#   Everything else lives in dedicated modes, entered via Hyper
+#
+# Mode map:
+#   hyper-n  →  nav     Focus and move windows
+#   hyper-w  →  win     Layout, split, float, fullscreen
+#   hyper-z  →  resize  Resize windows
+#   hyper-s  →  space   Switch workspace / send window to workspace
+#   hyper-a  →  app     App launcher (includes new Ghostty window via 't')
+#   hyper-r  →  reload  Reload AeroSpace / sketchybar
+# ============================================================
+
+config-version = 2
+
+start-at-login = true
+
+default-root-container-layout = 'accordion'
+default-root-container-orientation = 'vertical'
+
+# Normalizations ON — cleaner tree, highly recommended
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+key-mapping.preset = 'qwerty'
+
+# Named persistent workspaces
+persistent-workspaces = ['General', 'Work', 'Dev', 'Media', 'Game', 'Ghostty', 'Kitty', 'Zed', 'Obsidian', 'Claude', 'External', 'Zen']
+
+# Start sketchybar together with AeroSpace
+after-startup-command = ['exec-and-forget sketchybar']
+
+# Mouse follows focus between monitors
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
+# Notify sketchybar on workspace change
+exec-on-workspace-change = ['/bin/bash', '-c',
+    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+]
+
+# Gaps - outer.top leaves room for sketchybar
+[gaps]
+inner.horizontal = 5
+inner.vertical = 5
+outer.left = 5
+outer.bottom = 5
+outer.top = 45
+outer.right = 5
+
+# ============================================================
+# WORKSPACE → MONITOR ASSIGNMENT
+# ============================================================
+
+[workspace-to-monitor-force-assignment]
+General  = 'main'
+Work     = 'main'
+Dev      = 'main'
+Media    = 'main'
+Game     = 'main'
+Ghostty  = 'main'
+Kitty = 'main'
+Zed      = 'main'
+Obsidian = 'main'
+Claude   = 'main'
+External = ['A156C2H.*', 'secondary', 'main']
+Zen = ['A156C2H.*', 'secondary', 'main']
+
+# ============================================================
+# APP → WORKSPACE ASSIGNMENT
+# ============================================================
+
+[[on-window-detected]]
+if.app-id = 'com.mitchellh.ghostty'
+run = 'move-node-to-workspace Ghostty'
+
+[[on-window-detected]]
+if.app-id = 'dev.zed.Zed'
+run = 'move-node-to-workspace Zed'
+
+[[on-window-detected]]
+if.app-id = 'com.vscodium.codeeditor'
+run = 'move-node-to-workspace Dev'
+
+[[on-window-detected]]
+if.app-id = 'md.obsidian'
+run = 'move-node-to-workspace Obsidian'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Safari'
+run = 'move-node-to-workspace General'
+
+[[on-window-detected]]
+if.app-id = 'org.mozilla.firefox'
+run = 'move-node-to-workspace General'
+
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run = 'move-node-to-workspace Media'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Music'
+run = 'move-node-to-workspace Media'
+
+[[on-window-detected]]
+if.app-id = 'com.anthropic.claudefordesktop'
+run = 'move-node-to-workspace Claude'
+
+[[on-window-detected]]
+if.app-id = 'app.zen-browser.zen'
+run = 'move-node-to-workspace Zen'
+
+[[on-window-detected]]
+if.app-id = 'net.kovidgoyal.kitty'
+run = 'move-node-to-workspace Kitty'
+
+# ============================================================
+# MAIN MODE
+# Zero alt- bindings — only Hyper triggers and system overrides
+# ============================================================
+
+[mode.main.binding]
+
+# Disable macOS "hide application" — prevents apps vanishing behind AeroSpace's back
+cmd-h     = []
+cmd-alt-h = []
+
+# ── Hyper mode triggers ──────────────────────────────────────
+cmd-ctrl-alt-shift-n = 'mode nav'    # Focus / move windows
+cmd-ctrl-alt-shift-w = 'mode win'    # Layout / split / float / fullscreen
+cmd-ctrl-alt-shift-z = 'mode resize' # Resize windows
+cmd-ctrl-alt-shift-s = 'mode space'  # Workspace switching
+cmd-ctrl-alt-shift-a = 'mode app'    # App launcher
+cmd-ctrl-alt-shift-r = 'mode reload' # Reload configs
+
+# ============================================================
+# NAV MODE  (hyper-n)
+# Focus and move windows — stays open, press escape when done
+# ============================================================
+
+[mode.nav.binding]
+esc = 'mode main'
+enter  = 'mode main'
+
+# Focus — wraps around workspace like i3
+h = 'focus --boundaries-action wrap-around-the-workspace left'
+j = 'focus --boundaries-action wrap-around-the-workspace down'
+k = 'focus --boundaries-action wrap-around-the-workspace up'
+l = 'focus --boundaries-action wrap-around-the-workspace right'
+
+# Move window
+shift-h = 'move left'
+shift-j = 'move down'
+shift-k = 'move up'
+shift-l = 'move right'
+
+# Move window to next monitor
+shift-tab = 'move-node-to-monitor next'
+
+# ============================================================
+# WIN MODE  (hyper-w)
+# Layout, split, float, fullscreen — stays open
+# ============================================================
+
+[mode.win.binding]
+esc = 'mode main'
+enter  = 'mode main'
+
+f     = 'fullscreen'                        # fullscreen
+space = 'layout floating tiling'            # float / tile toggle
+
+s = 'layout v_accordion'                    # stacking   (i3: layout stacking)
+w = 'layout h_accordion'                    # tabbed     (i3: layout tabbed)
+e = 'layout tiles horizontal vertical'      # toggle split (i3: layout toggle split)
+
+# join-with: merge focused window into a container with the window in that direction
+shift-h = ['join-with left',  'mode main']
+shift-j = ['join-with down',  'mode main']
+shift-k = ['join-with up',    'mode main']
+shift-l = ['join-with right', 'mode main']
+
+# ============================================================
+# RESIZE MODE  (hyper-z)
+# Resize focused window — stays open
+# ============================================================
+
+[mode.resize.binding]
+esc = 'mode main'
+enter  = 'mode main'
+
+h = 'resize width -50'
+j = 'resize height +50'
+k = 'resize height -50'
+l = 'resize width +50'
+
+# Larger steps with shift
+shift-h = 'resize width -200'
+shift-j = 'resize height +200'
+shift-k = 'resize height -200'
+shift-l = 'resize width +200'
+
+# ============================================================
+# SPACE MODE  (hyper-s)
+# Switch workspace or send window to workspace — auto-exits
+# ============================================================
+
+[mode.space.binding]
+esc = 'mode main'
+
+# Switch to workspace
+1 = ['workspace General',  'mode main']
+2 = ['workspace Work',     'mode main']
+3 = ['workspace Dev',      'mode main']
+4 = ['workspace Media',    'mode main']
+5 = ['workspace Game',     'mode main']
+6 = ['workspace External', 'mode main']
+g = ['workspace Ghostty',  'mode main']
+k = ['workspace Kitty', 'mode main']
+z = ['workspace Zed',      'mode main']
+o = ['workspace Obsidian', 'mode main']
+c = ['workspace Claude',   'mode main']
+7 = ['workspace Zen', 'mode main']
+
+# Navigate prev / next
+left  = ['workspace prev', 'mode main']
+right = ['workspace next', 'mode main']
+
+# Send focused window to workspace (shift + number)
+shift-1 = ['move-node-to-workspace General',  'mode main']
+shift-2 = ['move-node-to-workspace Work',     'mode main']
+shift-3 = ['move-node-to-workspace Dev',      'mode main']
+shift-4 = ['move-node-to-workspace Media',    'mode main']
+shift-5 = ['move-node-to-workspace Game',     'mode main']
+shift-6 = ['move-node-to-workspace External', 'mode main']
+shift-7 = ['move-node-to-workspace Zen', 'mode main']
+shift-g = ['move-node-to-workspace Ghostty',  'mode main']
+shift-k = ['move-node-to-workspace Kitty', 'mode main']
+shift-z = ['move-node-to-workspace Zed',  'mode main']
+shift-o = ['move-node-to-workspace Obsidian',  'mode main']
+shift-c = ['move-node-to-workspace Claude', 'mode main']
+
+# Send window to workspace and follow it there
+# alt-1 = ['move-node-to-workspace General',  'workspace General',  'mode main']
+# alt-2 = ['move-node-to-workspace Work',     'workspace Work',     'mode main']
+# alt-3 = ['move-node-to-workspace Dev',      'workspace Dev',      'mode main']
+# alt-4 = ['move-node-to-workspace Media',    'workspace Media',    'mode main']
+# alt-5 = ['move-node-to-workspace Game',     'workspace Game',     'mode main']
+# alt-6 = ['move-node-to-workspace External', 'workspace External', 'mode main']
+
+# ============================================================
+# APP MODE  (hyper-a)
+# Open app — auto-exits after opening
+# ============================================================
+
+[mode.app.binding]
+esc = 'mode main'
+t = ['exec-and-forget osascript -e "tell application \"Ghostty\" to activate" -e "tell application \"System Events\" to keystroke \"n\" using command down"', 'mode main']
+g = ['exec-and-forget open -a Ghostty',  'mode main']
+k = ['exec-and-forget open -a Kitty', 'mode main']
+o = ['exec-and-forget open -a Obsidian', 'mode main']
+b = ['exec-and-forget open -a Safari',   'mode main']
+z = ['exec-and-forget open -a Zed',      'mode main']
+v = ['exec-and-forget open -a VSCodium', 'mode main']
+n = ['exec-and-forget open -a Notes',    'mode main']
+f = ['exec-and-forget open -a Finder',  'mode main']
+w = ['exec-and-forget open -a Wallabag', 'mode main']
+s = ['exec-and-forget open -a Spotify',  'mode main']
+m = ['exec-and-forget open -a Music',    'mode main']
+c = ['exec-and-forget open -a Claude',   'mode main']
+h = ['exec-and-forget open -a NAPS2',    'mode main']
+shift-b = ['exec-and-forget open -a Zen', 'mode main']
+
+# ============================================================
+# RELOAD MODE  (hyper-r)
+# Reload AeroSpace and/or sketchybar — auto-exits
+# ============================================================
+
+[mode.reload.binding]
+esc = 'mode main'
+a = ['reload-config',                                                    'mode main'] # AeroSpace only
+s = ['exec-and-forget sketchybar --reload',                              'mode main'] # sketchybar only
+r = ['reload-config', 'exec-and-forget sketchybar --reload',             'mode main'] # both

@@ -1,0 +1,6 @@
+[mgr]
+show_hidden = true
+sort_by = "natural"
+sort_dir_first = true
+sort_translit = true
+show_symlink = true

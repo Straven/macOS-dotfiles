@@ -1,0 +1,116 @@
+[settings]
+animate = true
+animation_duration = 0.3
+animation_fps = 100.0
+
+focus_follows_mouse = true
+mouse_follow_focus = true
+mouse_hides_on_focus = true
+
+auto_focus_blacklist = []
+
+run_on_start = []
+
+hot_reload = true
+
+[settings.layout]
+mode = "traditional"
+
+[settings.layout.gaps]
+[settings.layout.gaps.outer]
+top = 5
+left = 5
+bottom = 5
+right = 5
+
+[settings.layout.inner]
+horizontal = 3
+vertical = 3
+
+[settings.ui.menu_bar]
+enabled = true
+show_empty = false
+mode = "all"
+active_label = "index"
+display_style = "layout"
+
+[settings.ui.mission_control]
+enabled = true
+fade_enabled = true
+fade_duration_ms = 180.0
+
+[settings.gestures]
+enabled = false
+invert_horizontal_swipe = false
+swipe_vertical_tolerance = 0.4
+skip_empty = true
+fingers = 3
+distance_pct = 0.08
+haptics_enabled = true
+haptics_pattern = "level_change"
+
+[settings.window_snapping]
+drag_swap_fraction = 0.3
+
+[virtual_workspaces]
+enabled = true
+default_workspace_count = 6
+auto_assign_windows = true
+preserve_focus_per_workspace = true
+workspace_auto_back_and_forth = false
+reapply_app_rules_on_title_change = false
+
+workspace_rules = []
+
+workspace_names = ["general", "work", "dev", "media", "game", "external"]
+
+app_rules = []
+
+[modifier_combinations]
+hyper = "Meta + Alt + Ctrl + Shift"
+change_space = "Meta + Alt"
+window_control = "Meta + Shift"
+
+[keys]
+
+"hyper + Z" = "toggle_space_activation"
+
+"hyper + H" = { move_focus = "left" }
+"hyper + J" = { move_focus = "down" }
+"hyper + K" = { move_focus = "up" }
+"hyper + L" = { move_focus = "right" }
+
+"Alt + H" = { move_node = "left" }
+"Alt + J" = { move_node = "down" }
+"Alt + K" = { move_node = "up" }
+"Alt + L" = { move_node = "right" }
+
+"hyper + 0" = { switch_to_workspace = 0 }
+"hyper + 1" = { switch_to_workspace = 1 }
+"hyper + 2" = { switch_to_workspace = 2 }
+"hyper + 3" = { switch_to_workspace = 3 }
+"hyper + 4" = { switch_to_workspace = 4 }
+"hyper + 5" = { switch_to_workspace = 5 }
+"hyper + 6" = { switch_to_workspace = 6 }
+
+"change_space + 0" = { move_window_to_workspace = 0 }
+"change_space + 1" = { move_window_to_workspace = 1 }
+"change_space + 2" = { move_window_to_workspace = 2 }
+"change_space + 3" = { move_window_to_workspace = 3 }
+"change_space + 4" = { move_window_to_workspace = 4 }
+"change_space + 5" = { move_window_to_workspace = 5 }
+"change_space + 6" = { move_window_to_workspace = 6 }
+
+"hyper + Tab" = "switch_to_last_workspace"
+
+"window_control + H" = { join_window = "left" }
+"window_control + L" = { join_window = "right" }
+"window_control + K" = { join_window = "top" }
+"window_control + J" = { join_window = "down" }
+
+"window_control + Z" = "unjoin_windows"
+
+"window_control + F" = "toggle_window_floating"
+
+"hyper + Equal" = "resize_window_grow"
+"hyper + Minus" = "resize_window_shrink"

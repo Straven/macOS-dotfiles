@@ -1,0 +1,59 @@
+{
+  "colorize_brackets": true,
+  "icon_theme": "Colored Zed Icons Theme Dark",
+  "vim_mode": false,
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "theme": "Tokyo Night Flash Goddess Storm Transparent",
+  "context_servers": {
+    "mcp-obsidian": {
+      "enabled": true,
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/Users/mykolasarry/OneDrive/Notes/Straven-Notes/mcp-obsidian",
+        "run",
+        "mcp-obsidian"
+      ],
+      "env": {
+        "OBSIDIAN_PORT": "local_rest_api_plugin_port",
+        "OBSIDIAN_HOST": "local_rest_api_plugin_host",
+        "OBSIDIAN_API_KEY": "local_rest_api_plugin_key"
+      }
+    }
+  },
+  "diagnostics": {
+    "inline": {
+      "min_column": 85,
+      "enabled": true
+    }
+  },
+  "prettier": {
+    "allowed": true
+  },
+  "relative_line_numbers": "enabled",
+  "autosave": {
+    "after_delay": {
+      "milliseconds": 1500
+    }
+  },
+  "terminal": {
+    "shell": "system",
+    "detect_venv": {
+      "on": {
+        "directories": [".env", "env", ".venv", "venv"],
+        "activate_script": "default"
+      }
+    },
+    "working_directory": "current_project_directory"
+  },
+  "formatter": "prettier",
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
+  "ui_font_family": "FiraCode Nerd Font",
+  "buffer_font_family": "FiraCode Nerd Font",
+  "experimental.theme_overrides": {
+    "background.appearance": "transparent"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "inlay_hints": {
+    "enabled": true
+  },
+  "gutter": {
+    "line_numbers": true
+  },
+  "session": {
+    "trust_all_worktrees": true
+  },
+  "colorize_brackets": true,
+  "icon_theme": "Colored Zed Icons Theme Dark",
+  "vim_mode": false,
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "theme": "Tokyo Night Flash Goddess Storm Transparent",
+  "context_servers": {
+    "mcp-obsidian": {
+      "enabled": true,
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/Users/mykolasarry/OneDrive/Notes/Straven-Notes/mcp-obsidian",
+        "run",
+        "mcp-obsidian"
+      ],
+      "env": {
+        "OBSIDIAN_PORT": "27126",
+        "OBSIDIAN_HOST": "127.0.0.1",
+        "OBSIDIAN_API_KEY": "a7b961e7a133955105020c2344221cc2b77153578b1a15db0f808237f4b13daf"
+      }
+    }
+  },
+  "diagnostics": {
+    "inline": {
+      "min_column": 85,
+      "enabled": true
+    }
+  },
+  "prettier": {
+    "allowed": true
+  },
+  "relative_line_numbers": "enabled",
+  "autosave": {
+    "after_delay": {
+      "milliseconds": 1500
+    }
+  },
+  "terminal": {
+    "shell": "system",
+    "detect_venv": {
+      "on": {
+        "directories": [".env", "env", ".venv", "venv"],
+        "activate_script": "default"
+      }
+    },
+    "working_directory": "current_project_directory"
+  },
+  "formatter": "prettier",
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
+  "ui_font_family": "FiraCode Nerd Font",
+  "buffer_font_family": "FiraCode Nerd Font",
+  "experimental.theme_overrides": {
+    "background.appearance": "transparent"
+  }
+}
