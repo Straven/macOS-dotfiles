@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+BREWFILE="/Users/mykolasarry/OneDrive/StravenConfigs/dotfiles/macos-dotfiles/homebrew/Brewfile"
+
 gum style \
   --foreground 12 --border-foreground 12 --border double \
   --align center --width 90 --margin "0 0" --padding "0 0" \
@@ -21,17 +23,59 @@ gum style \
 gum spin --show-output --spinner minidot --title "Updating brew..." -- brew update
 printf "\n"
 
-OUTDATED=$(gum spin --show-output --spinner minidot --title "Checking for outdated brew packages" -- brew outdated)
+# ── Formulae ────────────────────────────────────────────────────────────────
+OUTDATED_FORMULAE=$(brew outdated --formula 2>/dev/null)
 
-if [[ -n "$OUTDATED" ]]; then
-  echo "$OUTDATED"
-  gum confirm --selected.background=2 --selected.foreground=0 "Upgrade the outdated formulae above?" && brew upgrade
+if [[ -n "$OUTDATED_FORMULAE" ]]; then
+  gum style --foreground 12 --bold "Outdated formulae:"
+  echo "$OUTDATED_FORMULAE"
   printf "\n"
-  brew cleanup --prune=all
+  gum confirm --selected.background=2 --selected.foreground=0 "Upgrade outdated formulae?" && brew upgrade
   printf "\n"
 else
-  echo "All brew packages are up to date."
+  gum style --foreground 2 "✓ All formulae are up to date."
   printf "\n"
 fi
+
+# ── Casks ───────────────────────────────────────────────────────────────────
+# --greedy includes casks that report themselves as auto-updating (e.g. Zed)
+OUTDATED_CASKS=$(brew outdated --cask --greedy 2>/dev/null)
+
+if [[ -n "$OUTDATED_CASKS" ]]; then
+  gum style --foreground 12 --bold "Outdated casks:"
+  echo "$OUTDATED_CASKS"
+  printf "\n"
+  gum confirm --selected.background=2 --selected.foreground=0 "Upgrade outdated casks?" && brew upgrade --cask --greedy
+  printf "\n"
+else
+  gum style --foreground 2 "✓ All casks are up to date."
+  printf "\n"
+fi
+
+# ── Brewfile sync: install missing ──────────────────────────────────────────
+gum style --foreground 12 --bold "Syncing Brewfile..."
+gum spin --show-output --spinner minidot --title "Installing anything missing from Brewfile..." \
+  -- brew bundle install --file="$BREWFILE" --no-lock
+printf "\n"
+
+# ── Brewfile sync: detect unlisted packages ──────────────────────────────────
+UNLISTED=$(brew bundle cleanup --file="$BREWFILE" --dry-run 2>/dev/null)
+
+if [[ -n "$UNLISTED" ]]; then
+  gum style --foreground 3 --bold "Packages installed but not in Brewfile:"
+  echo "$UNLISTED"
+  printf "\n"
+  gum confirm --selected.background=2 --selected.foreground=0 "Add them to the Brewfile now?" \
+    && brew bundle dump --force --file="$BREWFILE" \
+    && gum style --foreground 2 "✓ Brewfile updated."
+  printf "\n"
+else
+  gum style --foreground 2 "✓ Brewfile is in sync with installed packages."
+  printf "\n"
+fi
+
+# ── Cleanup & Health ─────────────────────────────────────────────────────────
+brew cleanup --prune=all
+printf "\n"
 
 gum spin --show-output --spinner minidot --title "Checking for brew issues..." -- brew doctor

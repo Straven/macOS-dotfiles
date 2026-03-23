@@ -29,7 +29,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 key-mapping.preset = 'qwerty'
 
 # Named persistent workspaces
-persistent-workspaces = ['General', 'Work', 'Dev', 'Media', 'Game', 'Ghostty', 'Kitty', 'Zed', 'Obsidian', 'Claude', 'External', 'Zen']
+persistent-workspaces = ['General', 'Work', 'Dev', 'Media', 'Game', 'Ghostty', 'Kitty', 'Zed', 'IntellijIDEA', 'Obsidian', 'Claude', 'External', 'Zen']
 
 # Start sketchybar together with AeroSpace
 after-startup-command = ['exec-and-forget sketchybar']
@@ -64,6 +64,7 @@ Game     = 'main'
 Ghostty  = 'main'
 Kitty = 'main'
 Zed      = 'main'
+IntellijIDEA = 'main'
 Obsidian = 'main'
 Claude   = 'main'
 External = ['A156C2H.*', 'secondary', 'main']
@@ -80,6 +81,10 @@ run = 'move-node-to-workspace Ghostty'
 [[on-window-detected]]
 if.app-id = 'dev.zed.Zed'
 run = 'move-node-to-workspace Zed'
+
+[[on-window-detected]]
+if.app-id = 'com.jetbrains.intellij'
+run = 'move-node-to-workspace IntellijIDEA'
 
 [[on-window-detected]]
 if.app-id = 'com.vscodium.codeeditor'
@@ -220,6 +225,7 @@ esc = 'mode main'
 g = ['workspace Ghostty',  'mode main']
 k = ['workspace Kitty', 'mode main']
 z = ['workspace Zed',      'mode main']
+i = ['workspace IntellijIDEA', 'mode main']
 o = ['workspace Obsidian', 'mode main']
 c = ['workspace Claude',   'mode main']
 7 = ['workspace Zen', 'mode main']
@@ -239,6 +245,7 @@ shift-7 = ['move-node-to-workspace Zen', 'mode main']
 shift-g = ['move-node-to-workspace Ghostty',  'mode main']
 shift-k = ['move-node-to-workspace Kitty', 'mode main']
 shift-z = ['move-node-to-workspace Zed',  'mode main']
+shift-i = ['move-node-to-workspace IntellijIDEA', 'mode main']
 shift-o = ['move-node-to-workspace Obsidian',  'mode main']
 shift-c = ['move-node-to-workspace Claude', 'mode main']
 
@@ -271,6 +278,7 @@ s = ['exec-and-forget open -a Spotify',  'mode main']
 m = ['exec-and-forget open -a Music',    'mode main']
 c = ['exec-and-forget open -a Claude',   'mode main']
 h = ['exec-and-forget open -a NAPS2',    'mode main']
+i = ['exec-and-forget open -a "Intellij IDEA"', 'mode main']
 shift-b = ['exec-and-forget open -a Zen', 'mode main']
 
 # ============================================================

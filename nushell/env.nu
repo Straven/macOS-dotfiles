@@ -9,6 +9,7 @@ $env.PATH = (
     $env.PATH
     | split row (char esep)
     | prepend [
+        $"($env.HOME)/.bun/bin"
         $"($env.HOME)/.cargo/bin"
         $"($env.HOME)/.local/bin"
         $"($env.HOME)/.config/bin"

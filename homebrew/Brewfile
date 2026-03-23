@@ -1,0 +1,353 @@
+# =============================================================================
+# Brewfile — Straven Setup
+# Managed via: ~/OneDrive/StravenConfigs/dotfiles/macos-dotfiles/homebrew/Brewfile
+# Usage:  brew bundle install --file=~/OneDrive/StravenConfigs/dotfiles/macos-dotfiles/homebrew/Brewfile
+# Update: brew bundle dump --file=~/OneDrive/StravenConfigs/dotfiles/macos-dotfiles/homebrew/Brewfile --force
+# =============================================================================
+
+
+# =============================================================================
+# TAPS
+# =============================================================================
+
+tap "epk/epk"                    # SF Mono Nerd Font
+tap "felixkratz/formulae"        # SketchyBar + Borders
+tap "jackielii/tap"              # skhd-zig
+tap "joshmedeski/sesh"           # sesh session manager
+tap "laishulu/homebrew"          # macism (input source switcher)
+tap "nikitabobko/tap"            # AeroSpace window manager
+tap "sass/sass"                  # Sass CLI
+tap "jesseduffield/lazygit"      # lazygit (redundant with core, kept for safety)
+
+# Other taps
+tap "acsandmann/tap"
+tap "asmvik/formulae"
+tap "dart-lang/dart"             # Dart SDK
+tap "gcenx/wine"                 # Wine (kept — may have dependent packages)
+tap "gromgit/fuse"               # ntfs-3g-mac
+
+
+# =============================================================================
+# SHELL & TERMINAL
+# =============================================================================
+
+brew "fish"                      # Primary shell
+brew "nushell"                   # Secondary shell (experimenting)
+brew "starship"                  # Cross-shell prompt
+brew "tmux"                      # Terminal multiplexer (primary)
+brew "zellij"                    # Terminal multiplexer (experimenting)
+brew "bash"                      # Bash (macOS default is old, keep updated)
+
+
+# =============================================================================
+# TERMINAL UTILITIES — Navigation & Search
+# =============================================================================
+
+brew "eza"                       # Modern ls replacement
+brew "bat"                       # Modern cat with syntax highlighting
+brew "fd"                        # Modern find replacement
+brew "fzf"                       # Fuzzy finder
+brew "ripgrep"                   # Fast grep (rg)
+brew "zoxide"                    # Smart cd (z / zoxide)
+brew "television"                # TV — TUI fuzzy file browser
+brew "gum"                       # Shell script UI components
+
+
+# =============================================================================
+# TERMINAL UTILITIES — File Management
+# =============================================================================
+
+brew "yazi"                      # Primary TUI file manager
+brew "lf"                        # Secondary TUI file manager
+brew "stow"                      # Symlink manager for dotfiles
+
+
+# =============================================================================
+# SYSTEM MONITORING
+# =============================================================================
+
+brew "btop"                      # Resource monitor (CPU/RAM/etc)
+brew "fastfetch"                 # System info display (neofetch replacement)
+
+
+# =============================================================================
+# GIT & VERSION CONTROL
+# =============================================================================
+
+brew "git"                       # Git core
+brew "git-filter-repo"           # Safe history rewriting
+brew "lazygit"                   # TUI git client
+brew "gh"                        # GitHub CLI
+brew "glab"                      # GitLab CLI
+
+
+# =============================================================================
+# EDITORS
+# =============================================================================
+
+brew "neovim"                    # Primary terminal editor
+
+
+# =============================================================================
+# WINDOW MANAGEMENT & DESKTOP
+# =============================================================================
+
+cask "nikitabobko/tap/aerospace" # AeroSpace tiling window manager
+brew "felixkratz/formulae/sketchybar" # Custom status bar
+brew "felixkratz/formulae/borders"    # Window borders
+cask "alt-tab"                   # Windows-style alt-tab switcher
+
+
+# =============================================================================
+# KEYBOARD & INPUT
+# =============================================================================
+
+cask "karabiner-elements"        # Keyboard remapping (Hyper key)
+brew "jackielii/tap/skhd-zig"   # Hotkey daemon
+brew "laishulu/homebrew/macism"  # Input source switcher (menu bar layout indicator)
+
+
+# =============================================================================
+# SESSION & WORKFLOW
+# =============================================================================
+
+brew "joshmedeski/sesh/sesh"    # Tmux session manager
+brew "terminal-notifier"         # macOS notifications from terminal
+brew "nowplaying-cli"            # Now playing info (for SketchyBar)
+brew "media-control"             # Media control via CLI
+brew "switchaudio-osx"           # Audio device switcher (for SketchyBar)
+
+
+# =============================================================================
+# LANGUAGES & RUNTIMES
+# =============================================================================
+
+brew "rustup"                    # Rust toolchain manager
+brew "lua"                       # Lua (Neovim plugins)
+brew "luarocks"                  # Lua package manager
+brew "openjdk"                   # Java (latest)
+brew "openjdk@11"                # Java 11 (legacy projects)
+brew "maven"                     # Java build tool
+brew "pipx"                      # Python CLI tool installer
+brew "uv"                        # Fast Python package manager
+brew "pnpm"                      # Fast Node package manager
+brew "rbenv"                     # Ruby version manager
+brew "sass/sass/sass"            # Sass CSS preprocessor
+
+
+# =============================================================================
+# BUILD TOOLS & UNIX ESSENTIALS
+# =============================================================================
+
+brew "gcc"                       # C/C++ compiler
+brew "make"                      # Build automation
+brew "coreutils"                 # GNU core utilities
+brew "gnu-sed"                   # GNU sed (macOS sed is BSD)
+brew "gawk"                      # GNU awk
+brew "bc"                        # Arbitrary precision calculator
+brew "pkgconf"                   # pkg-config replacement
+brew "unzip"                     # Unzip (macOS version is limited)
+brew "sevenzip"                  # 7-Zip
+
+
+# =============================================================================
+# MEDIA & IMAGE PROCESSING
+# =============================================================================
+
+brew "ffmpeg"                    # Audio/video processing
+brew "ffmpegthumbnailer"         # Video thumbnails (for yazi)
+brew "imagemagick"               # Image manipulation
+brew "chafa"                     # Image preview in terminal
+brew "resvg"                     # SVG renderer
+brew "poppler"                   # PDF rendering utils
+brew "streamlink"                # Stream extractor (Twitch etc)
+
+
+# =============================================================================
+# DOCUMENT & DATA PROCESSING
+# =============================================================================
+
+brew "jq"                        # JSON processor
+brew "pandoc"                    # Universal document converter
+brew "pngpaste"                  # Paste images from clipboard to file
+brew "markdownlint-cli2"         # Markdown linter
+brew "yamllint"                  # YAML linter
+brew "hugo"                      # Static site generator (blog)
+
+
+# =============================================================================
+# NETWORK & SECURITY
+# =============================================================================
+
+brew "wget"                      # HTTP downloader
+brew "nmap"                      # Network scanner
+brew "netcat"                    # TCP/UDP networking tool
+brew "bitwarden-cli"             # Bitwarden password manager CLI
+cask "protonvpn"                 # VPN client
+cask "signal"                    # Encrypted messaging
+
+
+# =============================================================================
+# CONTAINERS & SELF-HOSTED
+# =============================================================================
+
+brew "podman"                    # Rootless container engine (Docker alternative)
+
+
+# =============================================================================
+# DOCUMENTATION & HELP
+# =============================================================================
+
+brew "tlrc"                      # tldr pages (simplified man pages)
+
+
+# =============================================================================
+# FILESYSTEM & DISK TOOLS
+# =============================================================================
+
+cask "macfuse"                   # FUSE for macOS (required for ntfs-3g)
+brew "gromgit/fuse/ntfs-3g-mac" # NTFS read/write support
+cask "mounty"                    # NTFS drive mounter GUI
+brew "acpica"                    # ACPI tools
+brew "sleuthkit"                 # Digital forensics toolkit
+brew "cpmtools"                  # CP/M disk image tools (retro?)
+
+
+# =============================================================================
+# GUI APPLICATIONS
+# =============================================================================
+
+# Terminal & Editors
+cask "ghostty"                   # Primary terminal
+cask "kitty"                     # Secondary terminal
+cask "zed"                       # Modern GUI editor
+cask "vscodium"                  # VSCode without telemetry
+
+# Productivity
+cask "keyboard-maestro"          # Macro automation
+cask "raindropio"                # Bookmark manager
+cask "wailbrew"                  # Homebrew GUI (occasional use)
+cask "clop"                      # Clipboard optimizer
+cask "hex-fiend"                 # Hex editor
+cask "macsvg"                    # SVG editor
+
+# Media
+cask "audacity"                  # Audio editor
+cask "mediahuman-audio-converter" # Audio converter
+cask "chatterino"                # Twitch chat client
+
+# Utilities
+cask "keka"                      # Archive manager
+cask "balenaetcher"              # USB image flasher
+cask "naps2"                     # PDF scanning app
+
+# Firefox PWA support
+brew "firefoxpwa"                # Firefox Progressive Web Apps support
+
+
+# =============================================================================
+# FONTS
+# =============================================================================
+
+cask "font-jetbrains-mono"       # JetBrains Mono (primary coding font)
+cask "font-sf-mono"              # SF Mono (Apple monospace)
+cask "font-sf-pro"               # SF Pro (Apple UI font)
+cask "epk/epk/font-sf-mono-nerd-font"   # SF Mono with Nerd Font icons
+cask "font-hack-nerd-font"       # Hack Nerd Font
+cask "font-fira-code-nerd-font"  # Fira Code Nerd Font
+cask "font-monaspice-nerd-font"  # Monaspace Nerd Font
+cask "font-symbols-only-nerd-font" # Nerd Font symbols only
+cask "font-noto-sans-symbols-2"  # Noto Sans Symbols (Unicode coverage)
+cask "sf-symbols"                # Apple SF Symbols app
+
+
+# =============================================================================
+# VSCODE EXTENSIONS (VSCodium)
+# =============================================================================
+
+# Themes & Icons
+vscode "enkia.tokyo-night"
+vscode "eldritch.eldritch"
+vscode "pkief.material-icon-theme"
+
+# General Dev
+vscode "editorconfig.editorconfig"
+vscode "esbenp.prettier-vscode"
+vscode "github.vscode-pull-request-github"
+vscode "gitlab.gitlab-workflow"
+vscode "mhutchie.git-graph"
+vscode "sonarsource.sonarlint-vscode"
+vscode "anthropic.claude-code"
+
+# Web / Frontend
+vscode "bradlc.vscode-tailwindcss"
+vscode "dsznajder.es7-react-js-snippets"
+vscode "johnpapa.angular2"
+vscode "ms-vscode.live-server"
+vscode "yandeu.five-server"
+
+# API & HTTP
+vscode "humao.rest-client"
+vscode "rangav.vscode-thunder-client"
+
+# Database
+vscode "cweijan.dbclient-jdbc"
+vscode "cweijan.vscode-mysql-client2"
+vscode "mongodb.mongodb-vscode"
+vscode "mtxr.sqltools"
+
+# Containers & Cloud
+vscode "ms-azuretools.vscode-containers"
+vscode "ms-azuretools.vscode-docker"
+vscode "ms-kubernetes-tools.vscode-kubernetes-tools"
+
+# Java / Spring
+vscode "redhat.java"
+vscode "vmware.vscode-boot-dev-pack"
+vscode "vmware.vscode-spring-boot"
+vscode "vscjava.vscode-gradle"
+vscode "vscjava.vscode-java-debug"
+vscode "vscjava.vscode-java-dependency"
+vscode "vscjava.vscode-java-pack"
+vscode "vscjava.vscode-java-test"
+vscode "vscjava.vscode-maven"
+vscode "vscjava.vscode-spring-boot-dashboard"
+vscode "vscjava.vscode-spring-initializr"
+
+# Python
+vscode "ms-python.debugpy"
+vscode "ms-python.python"
+vscode "ms-python.vscode-python-envs"
+
+# Rust
+vscode "rust-lang.rust-analyzer"
+
+# Go
+vscode "golang.go"
+
+# Dart / Flutter
+vscode "dart-code.dart-code"
+vscode "dart-code.flutter"
+
+# Data Formats
+vscode "redhat.ansible"
+vscode "redhat.vscode-xml"
+vscode "redhat.vscode-yaml"
+
+# Markdown
+vscode "robole.markdown-snippets"
+vscode "yzhang.markdown-all-in-one"
+vscode "zaaack.markdown-editor"
+
+# Misc
+vscode "ms-vscode.references-view"
+
+
+# =============================================================================
+# CARGO CRATES
+# =============================================================================
+
+cargo "cargo-bundle"             # Bundle Rust apps as native macOS/Linux apps
+cargo "cargo-watch"              # Watch for changes and recompile
+cargo "git-cliff"                # Changelog generator
+cargo "lsp-ai"                   # LSP-powered AI completions

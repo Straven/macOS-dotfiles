@@ -1,8 +1,8 @@
 {
   "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
   "logo": {
-    "type": "kitty-direct",
-    //"type": "kitty-icat",
+    //"type": "kitty-direct",
+    "type": "kitty-icat",
     //"type": "chafa",
     //"source": "Users/mykolasarry/OneDrive/StravenConfigs/dotfiles/macos-dotfiles/fastfetch/ys1-blush-nobg.png",
     //"source": "~/.config/fastfetch/eldritch.png",

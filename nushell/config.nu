@@ -83,44 +83,68 @@ alias rup = rustup update
 # Hugo
 alias hserv = hugo server -D
 
-# Zellij session shortcuts
-alias t  = zellij
-alias ta = zellij attach
-alias tl = zellij list-sessions
-alias tk = zellij kill-session
+# Tmux session shortcuts
+alias t  = tmux
+alias ta = tmux attach
+alias tl = tmux list-sessions
+alias tk = tmux kill-session
 
 # ─── Custom Commands ──────────────────────────────────────────────────────────
 def cwr [] { cargo watch -x run }
 def cwt [] { cargo watch -x test }
 
 def homescreen [] {
-    let session = "homescreen"
-    let sessions = (zellij list-sessions | lines | str trim)
-    if $session in $sessions {
-        zellij attach $session
+    let session = "ys-straven-homescreen"
+    let exists = (bash -c $"tmux has-session -t ($session) 2>/dev/null; echo $?" | str trim)
+    if $exists == "0" {
+        if ($env | get -o TMUX | is-not-empty) {
+            bash -c $"tmux switch-client -t ($session)"
+        } else {
+            bash -c $"tmux attach-session -t ($session)"
+        }
     } else {
-        zellij --layout homescreen --session $session
+        bash -c "~/.config/tmux/create-homescreen.sh"
+        if ($env | get -o TMUX | is-not-empty) {
+            bash -c $"tmux switch-client -t ($session)"
+        } else {
+            bash -c $"tmux attach-session -t ($session)"
+        }
     }
 }
 
-def macos_dotfiles [] {
-    let session = "macos-dotfiles"
-    let sessions = (zellij list-sessions | lines | str trim)
-    if $session in $sessions {
-        zellij attach $session
+def rust-session [project?: string] {
+    let session = "ys-straven-rust"
+    let path = ($project | default (pwd | str trim))
+    let exists = (bash -c $"tmux has-session -t ($session) 2>/dev/null; echo $?" | str trim)
+    if $exists == "0" {
+        if ($env | get -o TMUX | is-not-empty) {
+            bash -c $"tmux switch-client -t ($session)"
+        } else {
+            bash -c $"tmux attach-session -t ($session)"
+        }
     } else {
-        zellij --layout macos-dotfiles --session $session
+        bash -c $"~/.config/tmux/create-rust-session.sh ($path)"
+        if ($env | get -o TMUX | is-not-empty) {
+            bash -c $"tmux switch-client -t ($session)"
+        } else {
+            bash -c $"tmux attach-session -t ($session)"
+        }
     }
 }
 
 def kill_homescreen [] {
-    zellij kill-session "homescreen"
+    bash -c "tmux kill-session -t ys-straven-homescreen"
     print "✓ Homescreen session killed"
 }
 
-def kill_macos_dotfiles [] {
-    zellij kill-session "macos-dotfiles"
-    print "✓ macos-dotfiles session killed"
+def kill-rust-session [] {
+    bash -c "tmux kill-session -t ys-straven-rust"
+    print "✓ Rust session killed"
 }
 
-def "ys brew" [] { ~/.config/bin/ys-brew }
+# ─── Auto-launch tmux in Ghostty ─────────────────────────────────────────────
+if (($env | get -o TMUX | is-empty) and (($env | get -o TERM_PROGRAM | default "") == "ghostty")) {
+    homescreen
+}
+
+def "ys-brew" [] { ~/.config/bin/ys-brew }

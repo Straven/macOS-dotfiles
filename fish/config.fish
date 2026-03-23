@@ -10,8 +10,8 @@ set -U FZF_DEFAULT_OPTS_FILE '$HOME/.config/fzf/.fzfrc'
 ulimit -n 10240
 
 #function fish_title
-    #    echo 🐈‍⬛ $argv[1] (pwd)
-    #end
+#    echo 🐈‍⬛ $argv[1] (pwd)
+#end
 
 # Homebrew
 if test -d /opt/homebrew
@@ -49,7 +49,7 @@ if status is-interactive
     and test "$TERM_PROGRAM" = ghostty
     and not set -q __home_screen_launched
     set -g __home_screen_launched 1
-    launch_homescreen
+    startup_sessions
 end
 
 starship init fish | source

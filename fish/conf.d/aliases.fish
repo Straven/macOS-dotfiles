@@ -35,10 +35,15 @@ abbr -a tk 'tmux kill-session -t'
 abbr -a home homescreen
 abbr -a ff refresh_fastfetch
 
-#macos-dotfiles
+# macos-dotfiles
 abbr -a c-mdots macos_dotfiles
 abbr -a r-mdots recreate_macos_dotfiles
 abbr -a k-mdots kill_macos_dotfiles
+
+# registra
+abbr -a c-reg registra
+abbr -a r-reg recreate_registra
+abbr -a k-reg kill_registra
 
 # sesh
 abbr -a s sesh

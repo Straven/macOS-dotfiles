@@ -26,7 +26,6 @@ add_newline = true
 [character]
 success_symbol = "[🐈‍⬛->](bold #8D8442)"
 error_symbol = "[🐈‍⬛->](bold #822F36)"
-vicmd_symbol = "[🐈‍⬛❮](bold #D56920)"
 
 [battery]
 full_symbol = '🔋 '
