@@ -6,11 +6,11 @@ function create_registra_layout -d "Create registra tmux layout"
     # Create new session at exact terminal dimensions so percentages are accurate
     tmux new-session -d -s $SESSION_NAME -n main -c $PROJECT_PATH -x 184 -y 49
 
-    # Split right ~16% (30 of 184 cols) - pane 3: right column (pnpm tauri dev)
-    tmux split-window -h -t "$SESSION_NAME:main.1" -c $PROJECT_PATH -p 27
-
-    # Split pane 1 vertically, bottom ~10% (5 of 49 rows) - pane 2: shell
+    # Split bottom ~20% - pane 2: full-width bottom row
     tmux split-window -v -t "$SESSION_NAME:main.1" -c $PROJECT_PATH -p 20
+
+    # Split bottom row 50/50 - pane 3: right half (pnpm tauri dev)
+    tmux split-window -h -t "$SESSION_NAME:main.2" -c $PROJECT_PATH -p 50
 
     # Pane layout (actual tmux numbering after splits)
     # main.1 - top-left     (neovim)
