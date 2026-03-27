@@ -1,0 +1,214 @@
+# vim:fileencoding=utf-8:foldmethod=marker
+# Tokyo Night Flash Goddess Storm — Yazi Theme
+# Based on the unified Flash Goddess Storm palette
+
+# : Manager {{{
+
+[mgr]
+
+cwd = { fg = "#7dcfff" }
+
+# Find
+find_keyword  = { fg = "#fc5d7c", bold = true, italic = true, underline = true }
+find_position = { fg = "#b57bee", bg = "reset", bold = true, italic = true }
+
+# Marker
+marker_copied   = { fg = "#9ed072", bg = "#9ed072" }
+marker_cut      = { fg = "#f5e642", bg = "#fc5d7c" }
+marker_marked   = { fg = "#7dcfff", bg = "#76c8e0" }
+marker_selected = { fg = "#f5e642", bg = "#f5e642" }
+
+# Count
+count_copied   = { fg = "#1a0e28", bg = "#9ed072" }
+count_cut      = { fg = "#1a0e28", bg = "#f5e642" }
+count_selected = { fg = "#1a0e28", bg = "#7dcfff" }
+
+# Border
+border_symbol = "│"
+border_style  = { fg = "#7a6b99" }
+
+# : }}}
+
+
+# : Tabs {{{
+
+[tabs]
+
+active   = { fg = "#1a0e28", bg = "#7dcfff", bold = true }
+inactive = { fg = "#7dcfff", bg = "#241535" }
+
+# : }}}
+
+
+# : Mode {{{
+
+[mode]
+
+normal_main = { fg = "#1a0e28", bg = "#7dcfff", bold = true }
+normal_alt  = { fg = "#7dcfff", bg = "#241535" }
+
+# Select mode
+select_main = { fg = "#1a0e28", bg = "#9ed072", bold = true }
+select_alt  = { fg = "#7dcfff", bg = "#241535" }
+
+# Unset mode
+unset_main = { fg = "#1a0e28", bg = "#b57bee", bold = true }
+unset_alt  = { fg = "#7dcfff", bg = "#241535" }
+
+# : }}}
+
+
+# : Status bar {{{
+
+[status]
+
+overall = { fg = "#7dcfff" }
+
+sep_left  = { open = "", close = "" }
+sep_right = { open = "", close = "" }
+
+# Progress
+progress_label  = { fg = "#1a0e28", bold = true }
+progress_normal = { fg = "#7dcfff", bg = "#241535" }
+progress_error  = { fg = "#fc5d7c", bg = "#241535" }
+
+# Permissions
+perm_sep   = { fg = "#7a6b99" }
+perm_type  = { fg = "#9ed072" }
+perm_read  = { fg = "#f5e642" }
+perm_write = { fg = "#fc5d7c" }
+perm_exec  = { fg = "#b57bee" }
+
+# : }}}
+
+
+# : Pick {{{
+
+[pick]
+
+border   = { fg = "#7dcfff" }
+active   = { fg = "#b57bee", bold = true }
+inactive = {}
+
+# : }}}
+
+
+# : Input {{{
+
+[input]
+
+border   = { fg = "#7dcfff" }
+title    = {}
+value    = {}
+selected = { reversed = true }
+
+# : }}}
+
+
+# : Completion {{{
+
+[cmp]
+
+border = { fg = "#7dcfff" }
+
+# : }}}
+
+
+# : Tasks {{{
+
+[tasks]
+
+border  = { fg = "#7dcfff" }
+title   = {}
+hovered = { fg = "#b57bee", underline = true }
+
+# : }}}
+
+
+# : Which {{{
+
+[which]
+
+mask            = { bg = "#241535" }
+cand            = { fg = "#9ed072" }
+rest            = { fg = "#e8dff5" }
+desc            = { fg = "#b57bee" }
+separator       = "  "
+separator_style = { fg = "#7a6b99" }
+
+# : }}}
+
+
+# : Help {{{
+
+[help]
+
+on      = { fg = "#9ed072" }
+run     = { fg = "#b57bee" }
+hovered = { reversed = true, bold = true }
+footer  = { fg = "#1a0e28", bg = "#e8dff5" }
+
+# : }}}
+
+
+# : Spotter {{{
+
+[spot]
+
+border   = { fg = "#7dcfff" }
+title    = { fg = "#7dcfff" }
+tbl_col  = { fg = "#9ed072" }
+tbl_cell = { fg = "#b57bee", bg = "#241535" }
+
+# : }}}
+
+
+# : Notify {{{
+
+[notify]
+
+title_info  = { fg = "#9ed072" }
+title_warn  = { fg = "#f5e642" }
+title_error = { fg = "#fc5d7c" }
+
+# : }}}
+
+
+# : File-specific styles {{{
+
+[filetype]
+
+rules = [
+  # Images
+  { mime = "image/*", fg = "#f5e642" },
+
+  # Media
+  { mime = "video/*", fg = "#fc5d7c" },
+  { mime = "audio/*", fg = "#fc5d7c" },
+
+  # Archives
+  { mime = "application/zip", fg = "#b57bee" },
+  { mime = "application/x-tar", fg = "#b57bee" },
+  { mime = "application/x-bzip*", fg = "#b57bee" },
+  { mime = "application/x-bzip2", fg = "#b57bee" },
+  { mime = "application/x-7z-compressed", fg = "#b57bee" },
+  { mime = "application/x-rar", fg = "#b57bee" },
+  { mime = "application/x-xz", fg = "#b57bee" },
+
+  # Documents
+  { mime = "application/doc", fg = "#9ed072" },
+  { mime = "application/epub+zip", fg = "#9ed072" },
+  { mime = "application/pdf", fg = "#9ed072" },
+  { mime = "application/rtf", fg = "#9ed072" },
+  { mime = "application/vnd.*", fg = "#9ed072" },
+
+  # Special files
+  { mime = "*", is = "orphan", fg = "#fc5d7c", bg = "#4B233E" },
+  { mime = "application/*exec*", fg = "#fc5d7c" },
+
+  # Fallback
+  { url = "*", fg = "#e8dff5" },
+  { url = "*/", fg = "#7dcfff" },
+]
+
+# : }}}

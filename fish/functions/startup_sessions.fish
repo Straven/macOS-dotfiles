@@ -12,5 +12,9 @@ homescreen"
         create_registra_layout
     end
 
+    if not tmux has-session -t ys-straven-yazi 2>/dev/null
+        create_yazi_layout
+    end
+
     launch_homescreen
 end
