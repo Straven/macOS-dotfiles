@@ -4,3 +4,16 @@ sort_by = "natural"
 sort_dir_first = true
 sort_translit = true
 show_symlink = true
+deps = []
+
+[[plugin.prepend_fetchers]]
+id = "mime"
+url = "local://*"
+run = "mime-ext.local"
+prio = "high"
+
+[[plugin.prepend_fetchers]]
+id = "mime"
+url = "remote://*"
+run = "mime-ext.remote"
+prio = "high"
