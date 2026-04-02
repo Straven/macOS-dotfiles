@@ -80,20 +80,10 @@ for i = 1, MAX_APP_ITEMS do
 			string = "",
 			color = colors.grey,
 			padding_left = 4,
-			padding_right = 0,
+			padding_right = 4,
 			y_offset = -1,
 		},
-		label = {
-			string = "",
-			font = {
-				family = settings.font.text,
-				style = settings.font.style_map["Semibold"],
-				size = 12.0,
-			},
-			color = colors.grey,
-			padding_left = 2,
-			padding_right = 6,
-		},
+		label = { drawing = false },
 		background = { drawing = false },
 		padding_left = 1,
 		padding_right = 1,
@@ -123,7 +113,6 @@ local function highlight_front_app(front_app)
 			local is_focused = (entry.app_name == front_app)
 			entry.item:set({
 				icon = { color = is_focused and colors.flash or colors.grey },
-				label = { color = is_focused and colors.flash or colors.grey },
 			})
 		end
 	end
@@ -156,7 +145,6 @@ local function update_app_icons(name)
 					app_item_pool[i].item:set({
 						drawing = true,
 						icon = { string = lookup, color = is_focused and colors.flash or colors.grey },
-						label = { string = w.app, color = is_focused and colors.flash or colors.grey },
 					})
 				else
 					app_item_pool[i].item:set({ drawing = false })
