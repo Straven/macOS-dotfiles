@@ -38,5 +38,50 @@ use = "yazi-rs/plugins:diff"
 rev = "1962818"
 hash = "8b1af6b5a69797ee951f2a80ce570818"
 
+[[plugin.deps]]
+use = "yazi-rs/plugins:piper"
+rev = "7749958"
+hash = "384464b6df8cb807425c521f8cd790f3"
+
+[[plugin.deps]]
+use = "Sonico98/exifaudio"
+rev = "4506f9d"
+hash = "4761fffb60a12d37096c34a356380cdf"
+
+[[plugin.deps]]
+use = "boydaihungst/mediainfo"
+rev = "49f5ab7"
+hash = "6e3b5e58f985cc2d625e0030dc35b1b2"
+
+[[plugin.deps]]
+use = "AleMenon/exiftool"
+rev = "4c35573"
+hash = "44ef03e4d7151fa4094dd6b87a553033"
+
+[[plugin.deps]]
+use = "Lil-Dank/lazygit"
+rev = "8c4086c"
+hash = "85316b5e9abeae2531d3e5d02a094381"
+
+[[plugin.deps]]
+use = "lmnek/pandoc"
+rev = "fd2798b"
+hash = "5af4b06948bb7b825a243131eea2075c"
+
+[[plugin.deps]]
+use = "AnirudhG07/plugins-yazi:copy-file-contents"
+rev = "71545f4"
+hash = "f8530ee84fee95dbcc26bb1d8d8019c7"
+
+[[plugin.deps]]
+use = "Rolv-Apneseth/starship"
+rev = "a837101"
+hash = "635b0feb9215772d22020eb0abf0bb34"
+
+[[plugin.deps]]
+use = "KKV9/command"
+rev = "523e6a5"
+hash = "a7e5577f7bae80fa064e416c09ac62a4"
+
 [flavor]
 deps = []

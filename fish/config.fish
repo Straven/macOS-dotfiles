@@ -57,3 +57,7 @@ zoxide init fish | source
 
 # Added by `rbenv init` on Mon Nov 10 00:45:52 EET 2025
 status --is-interactive; and rbenv init - --no-rehash fish | source
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH

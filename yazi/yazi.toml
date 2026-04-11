@@ -6,14 +6,82 @@ sort_translit = true
 show_symlink = true
 deps = []
 
-[[plugin.prepend_fetchers]]
-id = "mime"
-url = "local://*"
-run = "mime-ext.local"
-prio = "high"
+[tasks]
+  image_alloc      = 1073741824        # = 1024*1024*1024 = 1024MB
 
-[[plugin.prepend_fetchers]]
-id = "mime"
-url = "remote://*"
-run = "mime-ext.remote"
-prio = "high"
+[plugin]
+  prepend_preloaders = [
+  # Replace magick, image, video with mediainfo
+      { mime = "{audio,video,image}/*", run = "mediainfo" },
+      { mime = "application/subrip", run = "mediainfo" },
+
+      # Adobe Photoshop is image/adobe.photoshop, already handled above
+      # Adobe Illustrator
+      { mime = "application/postscript", run = "mediainfo" },
+      { mime = "application/illustrator", run = "mediainfo" },
+      { mime = "application/dvb.ait", run = "mediainfo" },
+      { mime = "application/vnd.adobe.illustrator", run = "mediainfo" },
+      { mime = "image/x-eps", run = "mediainfo" },
+      { mime = "application/eps", run = "mediainfo" },
+
+      # Sometimes AI file is recognized as "application/pdf".
+      # In this case use file extension instead:
+      { url = "*.{ai,eps,ait}", run = "mediainfo" },
+
+      # Hide metadata by default.
+      # Example for image mimetype:
+      { mime = "{image}/*", run = "mediainfo --no-metadata" },
+
+      # Hide image preview by default.
+      # Example for video mimetype:
+      { mime = "{video}/*", run = "mediainfo --no-preview" },
+
+      # NOTE: Use both --no-metadata and --no-preview will display nothing. :)
+      # Make sure both of your previewers and preloaders has the same arguments (--no-metadata
+  ]
+
+  prepend_previewers = [
+  # Replace magick, image, video with mediainfo
+      { mime = "{audio,video,image}/*", run = "mediainfo"},
+      { mime = "application/subrip", run = "mediainfo" },
+
+      # Adobe Photoshop is image/adobe.photoshop, already handled above
+      # Adobe Illustrator
+      { mime = "application/postscript", run = "mediainfo" },
+      { mime = "application/illustrator", run = "mediainfo" },
+      { mime = "application/dvb.ait", run = "mediainfo" },
+      { mime = "application/vnd.adobe.illustrator", run = "mediainfo" },
+      { mime = "image/x-eps", run = "mediainfo" },
+      { mime = "application/eps", run = "mediainfo" },
+
+      # Sometimes AI file is recognized as "application/pdf".
+      # In this case use file extension instead:
+      { url = "*.{ai,eps,ait}", run = "mediainfo" },
+
+      # Hide metadata by default.
+      # Example for image mimetype:
+      { mime = "{image}/*", run = "mediainfo --no-metadata" },
+
+      # Hide image preview by default.
+      # Example for video mimetype:
+      { mime = "{video}/*", run = "mediainfo --no-preview" },
+
+      # NOTE: Use both --no-metadata and --no-preview will display nothing. :)
+      # Make sure both of your previewers and preloaders has the same arguments (--no-metadata and --no-preview)
+
+      { mime = "application/sqlite3", run  = 'piper -- sqlite3 "$1" ".schema --indent"' },
+      { url = "*.md", run = 'piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark "$1"' },
+      { url = "*/", run = 'piper -- eza -TL=3 --color=always --icons=always --group-directories-first --no-quotes "$1"'},
+      { url = "*.csv", run = 'piper -- bat -p --color=always "$1"' },
+      { url = "*.tar*", run = 'piper --format=url -- tar tf "$1"' },
+      { mime = "*executable*", run = "exiftool" },
+  ]
+
+  prepend_fetchers = [
+    { id = "mime", url = "local://*", run = "mime-ext.local", prio = "high" },
+    { id = "mime", url = "remote://*", run = "mime-ext.remote", prio = "high" },
+  ]
+
+  append_previewers = [
+    { url = "*", run = 'piper -- hexyl --border=none --terminal-width=$w "$1"' },
+  ]
