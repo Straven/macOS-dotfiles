@@ -3,6 +3,7 @@ $env.HOMEBREW_NO_ENV_HINTS = "1"
 $env.CARGO_TARGET_DIR = "target"
 $env.EZA_CONFIG_DIR = $"($env.HOME)/.config/eza"
 $env.CARAPACE_BRIDGES = "zsh,fish,bash,inshellisense"
+$env.FZF_CTRL_R_OPTS = "--reverse"
 
 # PATH
 $env.PATH = (

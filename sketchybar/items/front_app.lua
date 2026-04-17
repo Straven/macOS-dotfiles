@@ -32,3 +32,15 @@ end)
 front_app:subscribe("mouse.clicked", function(env)
   sbar.trigger("swap_menus_and_spaces")
 end)
+
+sbar.exec(
+  "osascript -e 'tell application \"System Events\" to get name of first application process whose frontmost is true'",
+  function(app_result)
+    local app_name = app_result:gsub("%s+$", "")
+    local lookup = app_icons[app_name] or app_icons["Default"] or ":default:"
+    front_app:set({
+      icon = { string = lookup },
+      label = { string = app_name },
+    })
+  end
+)

@@ -42,11 +42,13 @@ export EZA_CONFIG_DIR='$HOME/.config/eza'
 set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
 carapace _carapace | source
 
-# Auto launch tmux homescreen only in Ghostty
-# Prevents nested tmux sessions and only runs in interactive mode
+# Auto launch tmux homescreen only in real Ghostty (not cmux)
+# Prevents nested tmux sessions and only runs in interactive mode.
+# cmux sets TERM_PROGRAM=ghostty too, so we also check CMUX_WORKSPACE_ID.
 if status is-interactive
     and not set -q TMUX
     and test "$TERM_PROGRAM" = ghostty
+    and not set -q CMUX_WORKSPACE_ID
     and not set -q __home_screen_launched
     set -g __home_screen_launched 1
     startup_sessions

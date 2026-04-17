@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Pick shell based on terminal context:
+#   - Inside cmux (CMUX_WORKSPACE_ID is set) → nushell
+#   - Elsewhere (plain Ghostty)              → fish
+#
+# Both cmux and Ghostty read `command = ...` from ghostty/config, so we use
+# this wrapper to branch on cmux's injected env var.
+
+if [ -n "$CMUX_WORKSPACE_ID" ]; then
+    exec /opt/homebrew/bin/nu --login
+else
+    exec /opt/homebrew/bin/fish --login
+fi

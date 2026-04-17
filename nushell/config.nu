@@ -27,6 +27,7 @@ $env.config = {
     }
 
     keybindings: [
+        # ─ Ctrl+R history search (sponge-style: only successful commands) ─────────
         {
             name: fzf_history
             modifier: control
@@ -35,11 +36,46 @@ $env.config = {
             event: {
                 send: executehostcommand
                 cmd: "commandline edit (
-                    history | get command | reverse | uniq
+                    history | where exit_status == 0 | get command | reverse | uniq
                     | str join (char newline)
                     | fzf --reverse --no-sort
                 )"
             }
+        }
+
+        # ─ Pisces-style auto-close brackets (vi_insert only) ─────────────────────
+        {
+            name: auto_pair_paren
+            modifier: none
+            keycode: "char_("
+            mode: vi_insert
+            event: [
+                { edit: insertchar, value: "(" }
+                { edit: insertchar, value: ")" }
+                { edit: moveleft }
+            ]
+        }
+        {
+            name: auto_pair_bracket
+            modifier: none
+            keycode: "char_["
+            mode: vi_insert
+            event: [
+                { edit: insertchar, value: "[" }
+                { edit: insertchar, value: "]" }
+                { edit: moveleft }
+            ]
+        }
+        {
+            name: auto_pair_brace
+            modifier: none
+            keycode: "char_{"
+            mode: vi_insert
+            event: [
+                { edit: insertchar, value: "{" }
+                { edit: insertchar, value: "}" }
+                { edit: moveleft }
+            ]
         }
     ]
 }
@@ -60,12 +96,13 @@ alias gc = git commit
 alias gp = git push
 
 # Brew
-alias bi  = brew install
-alias bic = brew install --cask
-alias bin = brew info
-alias bs  = brew search
-alias bl  = brew list
-alias bu  = brew uninstall
+alias bi   = brew install
+alias bic  = brew install --cask
+alias bin  = brew info
+alias binc = brew info --cask
+alias bs   = brew search
+alias bl   = brew list
+alias bu   = brew uninstall
 
 # Rust
 alias cb  = cargo build
@@ -92,6 +129,11 @@ alias tk = tmux kill-session
 # ─── Custom Commands ──────────────────────────────────────────────────────────
 def cwr [] { cargo watch -x run }
 def cwt [] { cargo watch -x test }
+
+# eza tree with a --level override, e.g. `lstl 3`
+def lstl [level: int] {
+    eza -alh -T --icons --git --color --no-user --no-permissions --level=$level
+}
 
 def homescreen [] {
     let session = "ys-straven-homescreen"
@@ -142,8 +184,14 @@ def kill-rust-session [] {
     print "✓ Rust session killed"
 }
 
-# ─── Auto-launch tmux in Ghostty ─────────────────────────────────────────────
-if (($env | get -o TMUX | is-empty) and (($env | get -o TERM_PROGRAM | default "") == "ghostty")) {
+# ─── Auto-launch tmux in Ghostty (skip inside cmux) ──────────────────────────
+# cmux sets TERM_PROGRAM=ghostty too, so we additionally check CMUX_WORKSPACE_ID
+# to distinguish real Ghostty from a cmux pane.
+if (
+    ($env | get -o TMUX | is-empty)
+    and (($env | get -o TERM_PROGRAM | default "") == "ghostty")
+    and (($env | get -o CMUX_WORKSPACE_ID | default "") == "")
+) {
     homescreen
 }
 

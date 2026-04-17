@@ -1,85 +1,77 @@
-# ============================================
-# MODAL SYSTEM - Application Launcher
-# ============================================
+# Hyper = Caps via Karabiner = cmd + ctrl + alt + shift
+# Rift owns WM/workspace bindings and workspace-aware app placement.
+# skhd-zig is only kept for the modal app launcher because Rift has direct
+# key bindings, but no modal submaps like the old AeroSpace app mode.
 
-# :: appmode
+:: default
+:: app @
+:: reload @
 
-# Enter app mode with Hyper+A
-# hyper - a ; appmode
+hyper - a ; app
+hyper - r ; reload
 
-# Exit app mode with Escape
-# appmode < escape ; default
+# ============================================================
+# APP MODE
+# ============================================================
+app < escape ; default
+app < return ; default
 
-# APP LAUNCHER BINDINGS (exit to default after opening)
-# appmode < g ; default : open -a Ghostty
-# appmode < o ; default : open -a Obsidian
-# appmode < b ; default : open -a Safari
-# appmode < z ; default : open -a Zed
-# appmode < v ; default : open -a VSCodium
-# appmode < n ; default : open -a Notes
-# appmode < f ; default : open -a Firefox
-# appmode < w ; default : open -a Wallabag
-# appmode < s ; default : open -a Spotify
-# appmode < m ; default : open -a Music
-# appmode < c ; default : open -a Claude
-# appmode < h ; default : open -a NAPS2
+# New Ghostty window on the Ghostty workspace.
+app < t : ~/.config/skhd/scripts/rift_launch.sh "Ghostty" 5; osascript -e 'tell application "Ghostty" to activate' -e 'tell application "System Events" to keystroke "n" using command down'
+app < hyper - t : ~/.config/skhd/scripts/rift_launch.sh "Ghostty" 5; osascript -e 'tell application "Ghostty" to activate' -e 'tell application "System Events" to keystroke "n" using command down'
 
-# ============================================
+# Open apps on their Rift workspace when they have one.
+app < g : ~/.config/skhd/scripts/rift_launch.sh "Ghostty" 5
+app < hyper - g : ~/.config/skhd/scripts/rift_launch.sh "Ghostty" 5
+
+app < k : ~/.config/skhd/scripts/rift_launch.sh "Kitty" 6
+app < hyper - k : ~/.config/skhd/scripts/rift_launch.sh "Kitty" 6
+
+app < o : ~/.config/skhd/scripts/rift_launch.sh "Obsidian" 9
+app < hyper - o : ~/.config/skhd/scripts/rift_launch.sh "Obsidian" 9
+
+app < b : ~/.config/skhd/scripts/rift_launch.sh "Safari" 0
+app < hyper - b : ~/.config/skhd/scripts/rift_launch.sh "Safari" 0
+
+app < z : ~/.config/skhd/scripts/rift_launch.sh "Zed" 7
+app < hyper - z : ~/.config/skhd/scripts/rift_launch.sh "Zed" 7
+
+app < v : ~/.config/skhd/scripts/rift_launch.sh "VSCodium" 2
+app < hyper - v : ~/.config/skhd/scripts/rift_launch.sh "VSCodium" 2
+
+app < n : open -a "Notes"
+app < hyper - n : open -a "Notes"
+
+app < f : open -a "Finder"
+app < hyper - f : open -a "Finder"
+
+app < w : open -a "Wallabag"
+app < hyper - w : open -a "Wallabag"
+
+app < s : ~/.config/skhd/scripts/rift_launch.sh "Spotify" 3
+app < hyper - s : ~/.config/skhd/scripts/rift_launch.sh "Spotify" 3
+
+app < m : ~/.config/skhd/scripts/rift_launch.sh "Music" 3
+app < hyper - m : ~/.config/skhd/scripts/rift_launch.sh "Music" 3
+
+app < c : ~/.config/skhd/scripts/rift_launch.sh "Claude" 10
+app < hyper - c : ~/.config/skhd/scripts/rift_launch.sh "Claude" 10
+
+app < h : open -a "NAPS2"
+app < hyper - h : open -a "NAPS2"
+
+app < i : ~/.config/skhd/scripts/rift_launch.sh "IntelliJ IDEA" 8
+app < hyper - i : ~/.config/skhd/scripts/rift_launch.sh "IntelliJ IDEA" 8
+
+app < shift - b : ~/.config/skhd/scripts/rift_launch.sh "Zen" 12
+app < hyper + shift - b : ~/.config/skhd/scripts/rift_launch.sh "Zen" 12
+
+# ============================================================
 # RELOAD MODE
-# ============================================
+# ============================================================
+reload < escape ; default
+reload < return ; default
 
-# :: reloadmode
-
-# Enter reload mode with Hyper+R
-# hyper - r ; reloadmode
-
-# Exit reload mode
-# reloadmode < escape ; default
-
-# Reload skhd with 's' (exit to default after)
-# reloadmode < s ; default : skhd --restart-service && osascript -e 'display notification "skhd reloaded" with title "Configuration"'
-
-# ============================================
-# SPACE MODE - Native macOS Spaces
-# ============================================
-
-# :: spacemode
-
-# Enter space mode with Hyper+S
-# hyper - s ; spacemode
-
-# Exit space mode
-# spacemode < escape ; default
-
-# Switch to spaces - use command to forward key AND exit mode
-# spacemode < 1 : skhd -k "ctrl - 1" && skhd -k "escape"
-# spacemode < 2 : skhd -k "ctrl - 2" && skhd -k "escape"
-# spacemode < 3 : skhd -k "ctrl - 3" && skhd -k "escape"
-# spacemode < 4 : skhd -k "ctrl - 4" && skhd -k "escape"
-# spacemode < 5 : skhd -k "ctrl - 5" && skhd -k "escape"
-# spacemode < 6 : skhd -k "ctrl - 6" && skhd -k "escape"
-# spacemode < 7 : skhd -k "ctrl - 7" && skhd -k "escape"
-# spacemode < 8 : skhd -k "ctrl - 8" && skhd -k "escape"
-# spacemode < 9 : skhd -k "ctrl - 9" && skhd -k "escape"
-
-# Navigate with arrow keys
-# spacemode < left : skhd -k "ctrl - left" && skhd -k "escape"
-# spacemode < right : skhd -k "ctrl - right" && skhd -k "escape"
-
-# ============================================
-# WINDOW MODE - Window Management
-# ============================================
-
-# :: winmode
-
-# Enter window mode with Hyper+W
-# hyper - w ; winmode
-
-# Exit window mode
-# winmode < escape ; default
-
-# Fill window - exit to default after
-# winmode < f ; default : skhd -k "ctrl + fn - f"
-
-# Center window - exit to default after
-# winmode < c ; default : skhd -k "ctrl + fn - c"
+reload < s : sketchybar --reload
+reload < k : skhd --reload
+reload < r : rift-cli service restart

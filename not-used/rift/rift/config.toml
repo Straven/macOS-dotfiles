@@ -1,0 +1,175 @@
+# ============================================================
+# Rift Configuration
+# ============================================================
+
+[settings]
+animate             = true
+animation_duration  = 0.22
+animation_fps       = 100.0
+focus_follows_mouse = false
+mouse_follows_focus = false
+hot_reload          = true
+default_disable     = false
+
+# Important:
+# Forward the workspace values into SketchyBar triggers.
+run_on_start = [
+  "rift-cli subscribe cli --event workspace_changed --command /bin/bash --args -c --args 'sketchybar --trigger rift_workspace_changed RIFT_WORKSPACE_NAME=\"$RIFT_WORKSPACE_NAME\" RIFT_WORKSPACE_ID=\"$RIFT_WORKSPACE_ID\" RIFT_WORKSPACE_INDEX=\"$RIFT_WORKSPACE_INDEX\"'",
+  "rift-cli subscribe cli --event windows_changed --command /bin/bash --args -c --args 'sketchybar --trigger rift_windows_changed RIFT_WORKSPACE_NAME=\"$RIFT_WORKSPACE_NAME\" RIFT_WORKSPACE_ID=\"$RIFT_WORKSPACE_ID\" RIFT_WINDOW_COUNT=\"$RIFT_WINDOW_COUNT\" RIFT_WINDOWS=\"$RIFT_WINDOWS\"'"
+]
+
+[settings.layout]
+mode = "traditional"
+
+[settings.layout.stack]
+stack_offset        = 35.0
+default_orientation = "perpendicular"
+
+[settings.layout.gaps.outer]
+top    = 45.0
+left   = 8.0
+bottom = 8.0
+right  = 8.0
+
+[settings.layout.gaps.inner]
+horizontal = 6.0
+vertical   = 6.0
+
+[settings.ui.menu_bar]
+enabled    = false
+show_empty = false
+
+[settings.ui.stack_line]
+enabled         = true
+thickness       = 2.0
+horiz_placement = "top"
+vert_placement  = "left"
+
+[settings.ui.mission_control]
+enabled      = true
+fade_enabled = true
+
+[settings.gestures]
+enabled                 = true
+invert_horizontal_swipe = false
+skip_empty              = true
+fingers                 = 3
+haptics_enabled         = true
+
+[virtual_workspaces]
+enabled                       = true
+default_workspace_count       = 13
+auto_assign_windows           = true
+preserve_focus_per_workspace  = true
+workspace_auto_back_and_forth = false
+default_workspace             = 0
+
+workspace_names = [
+  "General",
+  "Work",
+  "Dev",
+  "Media",
+  "Game",
+  "Ghostty",
+  "Kitty",
+  "Zed",
+  "IntellijIDEA",
+  "Obsidian",
+  "Claude",
+  "External",
+  "Zen",
+]
+
+app_rules = [
+  { app_id = "com.mitchellh.ghostty",          workspace = "Ghostty"      },
+  { app_id = "net.kovidgoyal.kitty",           workspace = "Kitty"        },
+  { app_id = "dev.zed.Zed",                    workspace = "Zed"          },
+  { app_id = "com.jetbrains.intellij",         workspace = "IntellijIDEA" },
+  { app_id = "com.vscodium.codeeditor",        workspace = "Dev"          },
+  { app_id = "md.obsidian",                    workspace = "Obsidian"     },
+  { app_id = "com.apple.Safari",               workspace = "General"      },
+  { app_id = "org.mozilla.firefox",            workspace = "General"      },
+  { app_id = "com.spotify.client",             workspace = "Media"        },
+  { app_id = "com.apple.Music",                workspace = "Media"        },
+  { app_id = "com.anthropic.claudefordesktop", workspace = "Claude"       },
+  { app_id = "app.zen-browser.zen",            workspace = "Zen"          },
+  { title_substring = "Preferences", floating = true },
+  { ax_subrole = "AXSystemDialog", floating = true },
+  { ax_subrole = "AXSheet", floating = true },
+]
+
+[modifier_combinations]
+hyper = "Meta + Ctrl + Alt + Shift"
+
+[keys]
+"Alt + Z" = "toggle_space_activated"
+
+# Focus
+"hyper + H" = { move_focus = "left" }
+"hyper + J" = { move_focus = "down" }
+"hyper + K" = { move_focus = "up" }
+"hyper + L" = { move_focus = "right" }
+
+# Move focused window
+"hyper + Shift + H" = { move_node = "left" }
+"hyper + Shift + J" = { move_node = "down" }
+"hyper + Shift + K" = { move_node = "up" }
+"hyper + Shift + L" = { move_node = "right" }
+
+# Move focused window to next display
+"hyper + Shift + Tab" = { move_window_to_display = { selector = "right" } }
+
+# Window actions
+"hyper + S" = "toggle_stack"
+"hyper + F" = "toggle_fullscreen_within_gaps"
+"hyper + Shift + F" = "toggle_fullscreen"
+"hyper + Space" = "toggle_window_floating"
+"hyper + E" = "toggle_orientation"
+"hyper + Comma" = "prev_window"
+"hyper + Period" = "next_window"
+
+# Join container
+"hyper + Shift + Left"  = { join_window = "left" }
+"hyper + Shift + Right" = { join_window = "right" }
+"hyper + Shift + Up"    = { join_window = "up" }
+"hyper + Shift + Down"  = { join_window = "down" }
+
+# Resize
+"hyper + Minus" = "resize_window_shrink"
+"hyper + Equal" = "resize_window_grow"
+
+# Workspace switching (0-based)
+"hyper + 1" = { switch_to_workspace = 0 }   # General
+"hyper + 2" = { switch_to_workspace = 1 }   # Work
+"hyper + 3" = { switch_to_workspace = 2 }   # Dev
+"hyper + 4" = { switch_to_workspace = 3 }   # Media
+"hyper + 5" = { switch_to_workspace = 4 }   # Game
+"hyper + 6" = { switch_to_workspace = 11 }  # External
+"hyper + 7" = { switch_to_workspace = 12 }  # Zen
+
+"hyper + G" = { switch_to_workspace = 5 }   # Ghostty
+"hyper + Y" = { switch_to_workspace = 6 }   # Kitty
+"hyper + Z" = { switch_to_workspace = 7 }   # Zed
+"hyper + I" = { switch_to_workspace = 8 }   # IntelliJ IDEA
+"hyper + O" = { switch_to_workspace = 9 }   # Obsidian
+"hyper + C" = { switch_to_workspace = 10 }  # Claude
+
+"hyper + Left"  = "prev_workspace"
+"hyper + Right" = "next_workspace"
+"hyper + Tab"   = "switch_to_last_workspace"
+
+# Move focused window to workspace
+"hyper + Shift + 1" = { move_window_to_workspace = 0 }
+"hyper + Shift + 2" = { move_window_to_workspace = 1 }
+"hyper + Shift + 3" = { move_window_to_workspace = 2 }
+"hyper + Shift + 4" = { move_window_to_workspace = 3 }
+"hyper + Shift + 5" = { move_window_to_workspace = 4 }
+"hyper + Shift + 6" = { move_window_to_workspace = 11 }
+"hyper + Shift + 7" = { move_window_to_workspace = 12 }
+
+"hyper + Shift + G" = { move_window_to_workspace = 5 }
+"hyper + Shift + Y" = { move_window_to_workspace = 6 }
+"hyper + Shift + Z" = { move_window_to_workspace = 7 }
+"hyper + Shift + I" = { move_window_to_workspace = 8 }
+"hyper + Shift + O" = { move_window_to_workspace = 9 }
+"hyper + Shift + C" = { move_window_to_workspace = 10 }

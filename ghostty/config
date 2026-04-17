@@ -1,4 +1,5 @@
-command = /opt/homebrew/bin/fish
+command = /Users/mykolasarry/.config/bin/shell-picker
+# command = /opt/homebrew/bin/fish
 # command = /opt/homebrew/bin/nu
 # env = XDG_CONFIG_HOME=/Users/mykolasarry/.config
 
