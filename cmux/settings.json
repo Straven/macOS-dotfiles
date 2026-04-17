@@ -1,0 +1,54 @@
+{
+  "$schema": "https://raw.githubusercontent.com/manaflow-ai/cmux/main/web/data/cmux-settings.schema.json",
+  "schemaVersion": 1,
+
+  "app": {
+    "appearance": "dark",
+    "sendAnonymousTelemetry": false,
+    "warnBeforeQuit": false,
+    "focusPaneOnFirstClick": true,
+    "newWorkspacePlacement": "afterCurrent",
+    "renameSelectsExistingName": true,
+    "reorderOnNotification": true,
+    "minimalMode": false
+  },
+
+  "notifications": {
+    "dockBadge": true,
+    "paneFlash": true,
+    "showInMenuBar": true,
+    "sound": "default",
+    "unreadPaneRing": true
+  },
+
+  "sidebar": {
+    "branchLayout": "vertical",
+    "hideAllDetails": false,
+    "showBranchDirectory": true,
+    "showLog": true,
+    "showNotificationMessage": true,
+    "showProgress": true,
+    "showCustomMetadata": false,
+    "showPorts": false,
+    "showPullRequests": false,
+    "showSSH": false,
+    "openPortLinksInCmuxBrowser": false,
+    "openPullRequestLinksInCmuxBrowser": false
+  },
+
+  "workspaceColors": {
+    "selectionColor": "#372050",
+    "notificationBadgeColor": "#b57bee"
+  },
+
+  "sidebarAppearance": {
+    "tintColor": "#1a0e28",
+    "tintOpacity": 0.55,
+    "matchTerminalBackground": false
+  },
+
+  "advanced": {
+    "claudeCodeIntegration": true,
+    "claudeBinaryPath": ""
+  }
+}
