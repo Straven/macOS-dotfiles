@@ -3,8 +3,6 @@ local icons = require("icons")
 local settings = require("settings")
 local app_icons = require("helpers.app_icons")
 
--- ── Workspace map (matches yabai/spaces.sh and yabai rules) ─────────
-
 local workspace_names = {
 	"General",
 	"Work",
@@ -12,38 +10,32 @@ local workspace_names = {
 	"Media",
 	"Game",
 	"Ghostty",
-	"Kitty",
 	"Zed",
-	"IntellijIDEA",
 	"Obsidian",
 	"Claude",
 	"External",
 	"Zen",
-	"Scratch1",
-	"Scratch2",
 }
 
 local workspace_icons = {
-	General = "􀎞",       -- house
-	Work = "􀈮",          -- briefcase.fill
-	Dev = "􀙚",           -- chevron.left.forwardslash.chevron.right
-	Media = "􀊖",         -- play.rectangle
-	Game = "􀛸",          -- gamecontroller
-	Ghostty = "􀪏",       -- terminal
-	Kitty = "􀪏",         -- terminal (shared glyph)
-	Zed = "􀤸",           -- curlybraces
-	IntellijIDEA = "􀫊",  -- cube
-	Obsidian = "􀈕",      -- doc.text.fill
-	Claude = "􀌪",        -- bubble.left
-	External = "􀢹",      -- display
-	Zen = "􀎬",           -- globe
-	Scratch1 = "􀉣",      -- tray
-	Scratch2 = "􀉤",      -- tray.fill
+	General = "􀎞", -- house
+	Work = "􀈮", -- briefcase.fill
+	Dev = "􀙚", -- chevron.left.forwardslash.chevron.right
+	Media = "􀊖", -- play.rectangle
+	Game = "􀛸", -- gamecontroller
+	Ghostty = "􀪏", -- terminal
+	Zed = "􀤸", -- curlybraces
+	Obsidian = "􀈕", -- doc.text.fill
+	Claude = "􀌪", -- bubble.left
+	External = "􀢹", -- display
+	Zen = "􀎬", -- globe
 }
 
 local popup_width = 200
 local current_workspace = ""
 local current_front_app = ""
+
+sbar.add("event", "aerospace_workspace_change")
 
 -- ── Single workspace pill ─────────────────────────────────────
 
@@ -76,7 +68,7 @@ local space_bracket = sbar.add("bracket", { space_display.name }, {
 	},
 })
 
--- --- App items pool for the current workspace ----------------------
+-- --- App items for current workspace ------------------------------
 
 local MAX_APP_ITEMS = 20
 local app_item_pool = {}
@@ -103,7 +95,7 @@ for i = 1, MAX_APP_ITEMS do
 	item:subscribe("mouse.clicked", function()
 		local wid = app_item_pool[i].window_id
 		if wid then
-			sbar.exec("yabai -m window --focus " .. wid)
+			sbar.exec("aerospace focus --window-id " .. wid)
 		end
 	end)
 end
@@ -126,15 +118,16 @@ local function highlight_front_app(front_app)
 	end
 end
 
--- --- Update app items for a given workspace -------------------------
+-- --- Update app items for workspace -------------------------------
 
 local function update_app_icons(name)
-	sbar.exec("yabai -m query --windows --space " .. name .. " 2>/dev/null", function(result)
+	sbar.exec("aerospace list-windows --workspace " .. name .. " --json 2>/dev/null", function(result)
+		-- sbar.exec with --json returns a parsed Lua table, not a string
 		local windows = {}
 		if type(result) == "table" then
 			for _, win in ipairs(result) do
-				local wid = win["id"]
-				local app = win["app"]
+				local wid = win["window-id"]
+				local app = win["app-name"]
 				if wid and app then
 					table.insert(windows, { id = tostring(wid), app = app })
 				end
@@ -203,7 +196,7 @@ for _, name in ipairs(workspace_names) do
 
 	item:subscribe("mouse.clicked", function()
 		space_display:set({ popup = { drawing = false } })
-		sbar.exec("yabai -m space --focus " .. name)
+		sbar.exec("aerospace workspace " .. name)
 	end)
 
 	popup_items[name] = item
@@ -233,31 +226,10 @@ local function update(focused)
 	update_app_icons(focused)
 end
 
--- ── Yabai signal-driven refresh ────────────────────────────────
--- yabai sends `sketchybar --trigger space_change` on space_changed; we query
--- yabai for the focused space label inside the handler.
+-- ── AeroSpace workspace change event ─────────────────────────
 
-local function refresh_focused()
-	sbar.exec("yabai -m query --spaces --space 2>/dev/null", function(result)
-		local focused = nil
-		if type(result) == "table" then
-			focused = result.label
-		end
-		if focused and focused ~= "" then
-			update(focused)
-		end
-	end)
-end
-
-space_display:subscribe("space_change", refresh_focused)
-space_display:subscribe("display_change", refresh_focused)
-space_display:subscribe("window_focus", function()
-	refresh_focused()
-end)
-space_display:subscribe("title_change", function()
-	if current_workspace ~= "" then
-		update_app_icons(current_workspace)
-	end
+space_display:subscribe("aerospace_workspace_change", function(env)
+	update(env.FOCUSED_WORKSPACE)
 end)
 
 -- ── Front app change — update app item highlights ────────────
@@ -285,15 +257,8 @@ end)
 
 -- ── Startup: set initial state ────────────────────────────────
 
-sbar.exec("yabai -m query --spaces --space 2>/dev/null", function(result)
-	local focused = nil
-	if type(result) == "table" then
-		focused = result.label
-	end
-	if not focused or focused == "" then
-		focused = workspace_names[1]
-	end
-
+sbar.exec("aerospace list-workspaces --focused", function(result)
+	local focused = result:gsub("%s+", "")
 	sbar.exec(
 		"osascript -e 'tell application \"System Events\" to get name of first application process whose frontmost is true'",
 		function(app_result)
