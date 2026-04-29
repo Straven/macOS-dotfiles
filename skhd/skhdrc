@@ -51,6 +51,7 @@ win < escape ; default
 win < return ; default
 
 win < f      ; default : yabai -m window --toggle zoom-fullscreen
+win < m      ; default : yabai -m window --toggle zoom-parent
 win < space  ; default : yabai -m window --toggle float
 win < s      ; default : yabai -m space --layout stack
 win < w      ; default : yabai -m space --layout stack
@@ -75,44 +76,44 @@ resize < shift - k : yabai -m window --resize top:0:-200
 # ============================================================
 # SPC mode  (focus + move-window)  — named "spc" because "space" clashes with the skhd key name
 # ============================================================
-spc <escape ; default
+spc < escape ; default
 
 # Focus by label
-spc <1 ; default : yabai -m space --focus General
-spc <2 ; default : yabai -m space --focus Work
-spc <3 ; default : yabai -m space --focus Dev
-spc <4 ; default : yabai -m space --focus Media
-spc <5 ; default : yabai -m space --focus Game
-spc <6 ; default : yabai -m space --focus External
-spc <7 ; default : yabai -m space --focus Zen
-spc <8 ; default : yabai -m space --focus Scratch1
-spc <9 ; default : yabai -m space --focus Scratch2
-spc <g ; default : yabai -m space --focus Ghostty
-spc <k ; default : yabai -m space --focus Kitty
-spc <z ; default : yabai -m space --focus Zed
-spc <i ; default : yabai -m space --focus IntellijIDEA
-spc <o ; default : yabai -m space --focus Obsidian
-spc <c ; default : yabai -m space --focus Claude
+spc < 1 ; default : yabai -m space --focus General
+spc < 2 ; default : yabai -m space --focus Work
+spc < 3 ; default : yabai -m space --focus Dev
+spc < 4 ; default : yabai -m space --focus Media
+spc < 5 ; default : yabai -m space --focus Game
+spc < 6 ; default : yabai -m space --focus External
+spc < 7 ; default : yabai -m space --focus Zen
+spc < 8 ; default : yabai -m space --focus Scratch1
+spc < 9 ; default : yabai -m space --focus Scratch2
+spc < g ; default : yabai -m space --focus Ghostty
+spc < k ; default : yabai -m space --focus Kitty
+spc < z ; default : yabai -m space --focus Zed
+spc < i ; default : yabai -m space --focus IntellijIDEA
+spc < o ; default : yabai -m space --focus Obsidian
+spc < c ; default : yabai -m space --focus Claude
 
-spc <left  ; default : yabai -m space --focus prev
-spc <right ; default : yabai -m space --focus next
+spc < left  ; default : yabai -m space --focus prev
+spc < right ; default : yabai -m space --focus next
 
 # Move window to space (no follow)
-spc <shift - 1 ; default : yabai -m window --space General
-spc <shift - 2 ; default : yabai -m window --space Work
-spc <shift - 3 ; default : yabai -m window --space Dev
-spc <shift - 4 ; default : yabai -m window --space Media
-spc <shift - 5 ; default : yabai -m window --space Game
-spc <shift - 6 ; default : yabai -m window --space External
-spc <shift - 7 ; default : yabai -m window --space Zen
-spc <shift - 8 ; default : yabai -m window --space Scratch1
-spc <shift - 9 ; default : yabai -m window --space Scratch2
-spc <shift - g ; default : yabai -m window --space Ghostty
-spc <shift - k ; default : yabai -m window --space Kitty
-spc <shift - z ; default : yabai -m window --space Zed
-spc <shift - i ; default : yabai -m window --space IntellijIDEA
-spc <shift - o ; default : yabai -m window --space Obsidian
-spc <shift - c ; default : yabai -m window --space Claude
+spc < shift - 1 ; default : yabai -m window --space General
+spc < shift - 2 ; default : yabai -m window --space Work
+spc < shift - 3 ; default : yabai -m window --space Dev
+spc < shift - 4 ; default : yabai -m window --space Media
+spc < shift - 5 ; default : yabai -m window --space Game
+spc < shift - 6 ; default : yabai -m window --space External
+spc < shift - 7 ; default : yabai -m window --space Zen
+spc < shift - 8 ; default : yabai -m window --space Scratch1
+spc < shift - 9 ; default : yabai -m window --space Scratch2
+spc < shift - g ; default : yabai -m window --space Ghostty
+spc < shift - k ; default : yabai -m window --space Kitty
+spc < shift - z ; default : yabai -m window --space Zed
+spc < shift - i ; default : yabai -m window --space IntellijIDEA
+spc < shift - o ; default : yabai -m window --space Obsidian
+spc < shift - c ; default : yabai -m window --space Claude
 
 # ============================================================
 # APP mode  (launcher; auto-exits)
