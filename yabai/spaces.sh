@@ -1,80 +1,58 @@
 #!/usr/bin/env bash
 # Idempotent space configuration: labels, per-space layouts, display assignments.
-# Re-runnable: safe to invoke from yabairc or on hyper-r reload.
+# Layout is 9 spaces on d1 + 1 space on d2 = 10 total.
+# Assumes Mission Control already has the correct space count split per display.
 
 set -u
 
-# Workspace map: index → label (1-based)
+# Workspace map: index → label (1-based, in Mission Control left-to-right order
+# across BOTH displays — d1 first 9, d2 last 1).
 SPACE_LABELS=(
-  "General"      # 1
-  "Work"         # 2
-  "Dev"          # 3
-  "Media"        # 4
-  "Game"         # 5
-  "Ghostty"      # 6
-  "Kitty"        # 7
-  "Zed"          # 8
-  "IntellijIDEA" # 9
-  "Obsidian"     # 10
-  "Claude"       # 11
-  "External"     # 12
-  "Zen"          # 13
-  "Scratch1"     # 14
-  "Scratch2"     # 15
+  "General"   # 1   d1
+  "Work"      # 2   d1
+  "Terminal"  # 3   d1   (was "Ghostty")
+  "Dev"       # 4   d1
+  "Media"     # 5   d1
+  "Obsidian"  # 6   d1
+  "Claude"    # 7   d1
+  "Game"      # 8   d1
+  "Scratch"   # 9   d1
+  "External"  # 10  d2
 )
 
-# Layout per label
+# All bsp; stack mode triggered cross-display drift on macOS Tahoe.
 declare -A SPACE_LAYOUTS=(
   [General]="bsp"
   [Work]="bsp"
+  [Terminal]="bsp"
   [Dev]="bsp"
   [Media]="bsp"
-  [Game]="stack"
-  [Ghostty]="stack"
-  [Kitty]="stack"
-  [Zed]="stack"
-  [IntellijIDEA]="stack"
-  [Obsidian]="stack"
-  [Claude]="stack"
+  [Obsidian]="bsp"
+  [Claude]="bsp"
+  [Game]="bsp"
+  [Scratch]="bsp"
   [External]="bsp"
-  [Zen]="bsp"
-  [Scratch1]="bsp"
-  [Scratch2]="bsp"
 )
 
-# Spaces that prefer display 2 if available, else display 1
-DISPLAY_2_TARGETS=("External" "Zen")
-
-# Verify space count matches expected
+# Verify space count matches expected.
 ACTUAL_COUNT=$(yabai -m query --spaces 2>/dev/null | jq 'length' 2>/dev/null)
 EXPECTED=${#SPACE_LABELS[@]}
 if [[ -z "$ACTUAL_COUNT" ]] || [[ "$ACTUAL_COUNT" -lt "$EXPECTED" ]]; then
-  echo "yabai/spaces.sh: WARNING - found ${ACTUAL_COUNT:-0} spaces, expected $EXPECTED. Create the missing spaces in Mission Control." >&2
+  echo "yabai/spaces.sh: WARNING - found ${ACTUAL_COUNT:-0} spaces, expected $EXPECTED. Adjust in Mission Control." >&2
   exit 1
 fi
 
-# Apply labels by index
+# Apply labels by index.
 for i in "${!SPACE_LABELS[@]}"; do
   idx=$((i + 1))
   label="${SPACE_LABELS[$i]}"
   yabai -m space "$idx" --label "$label" 2>/dev/null || true
 done
 
-# Apply layouts by label
+# Apply layouts by label.
 for label in "${SPACE_LABELS[@]}"; do
   layout="${SPACE_LAYOUTS[$label]}"
   yabai -m space "$label" --layout "$layout" 2>/dev/null || true
 done
 
-# Assign display 2 targets (with fallback to display 1)
-DISPLAY_COUNT=$(yabai -m query --displays 2>/dev/null | jq 'length' 2>/dev/null)
-TARGET_DISPLAY=1
-if [[ "${DISPLAY_COUNT:-1}" -ge 2 ]]; then
-  TARGET_DISPLAY=2
-fi
-
-for label in "${DISPLAY_2_TARGETS[@]}"; do
-  yabai -m space "$label" --display "$TARGET_DISPLAY" 2>/dev/null || true
-done
-
-echo "yabai/spaces.sh: applied labels + layouts (${EXPECTED} spaces, display target=${TARGET_DISPLAY} for ${DISPLAY_2_TARGETS[*]})"
+echo "yabai/spaces.sh: applied labels + layouts (${EXPECTED} spaces)"

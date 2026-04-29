@@ -64,43 +64,37 @@ yabai -m config insert_feedback_color 0xfff5e642
 # Note: yabai rule API requires space INDEX, not label. Map below mirrors
 # spaces.sh order. If Mission Control reorders, both this and spaces.sh
 # need updating.
-#   1 General  2 Work  3 Dev  4 Media  5 Game  6 Ghostty  7 Kitty
-#   8 Zed  9 IntellijIDEA  10 Obsidian  11 Claude  12 External  13 Zen
-#   14 Scratch1  15 Scratch2
+#   1 General  2 Work  3 Terminal  4 Dev  5 Media  6 Obsidian  7 Claude
+#   8 Game  9 Scratch  10 External (d2)
 
-# General (1) — default browsers
-yabai -m rule --add app="^Safari$" space=1
-yabai -m rule --add app="^Firefox$" space=1
+# General (1)
+yabai -m rule --add app="^Safari$"            space=1
+yabai -m rule --add app="^Firefox$"           space=1
 
-# Dev (3)
-yabai -m rule --add app="^VSCodium$" space=3
+# Terminal (3) — Ghostty + Kitty + cmux
+yabai -m rule --add app="^Ghostty$"           space=3
+yabai -m rule --add app="^kitty$"             space=3
+yabai -m rule --add app="^cmux$"              space=3
 
-# Media (4)
-yabai -m rule --add app="^Spotify$" space=4
-yabai -m rule --add app="^Music$" space=4
+# Dev (4) — code editors
+yabai -m rule --add app="^VSCodium$"          space=4
+yabai -m rule --add app="^Zed$"               space=4
+yabai -m rule --add app="^IntelliJ IDEA$"     space=4
 
-# Ghostty (6)
-yabai -m rule --add app="^Ghostty$" space=6
-yabai -m rule --add app="^cmux$" space=6
+# Media (5)
+yabai -m rule --add app="^Spotify$"           space=5
+yabai -m rule --add app="^Music$"             space=5
 
-# Kitty (7)
-yabai -m rule --add app="^kitty$" space=7
+# Obsidian (6)
+yabai -m rule --add app="^Obsidian$"          space=6
 
-# Zed (8)
-yabai -m rule --add app="^Zed$" space=8
+# Claude (7)
+yabai -m rule --add app="^Claude$"            space=7
 
-# IntellijIDEA (9)
-yabai -m rule --add app="^IntelliJ IDEA$" space=9
-
-# Obsidian (10)
-yabai -m rule --add app="^Obsidian$" space=10
-
-# Claude (11)
-yabai -m rule --add app="^Claude$" space=11
-
-# Zen (13)
-yabai -m rule --add app="^Zen$" space=13
-yabai -m rule --add app="^Zen Browser$" space=13
+# External (10, d2) — ambient apps
+yabai -m rule --add app="^WhatsApp$"          space=10
+yabai -m rule --add app="^Zen$"               space=10
+yabai -m rule --add app="^Zen Browser$"       space=10
 
 # ==============================================================================
 # Float rules — system + dialog windows

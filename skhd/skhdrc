@@ -78,20 +78,18 @@ resize < shift - k : yabai -m window --resize top:0:-200
 # ============================================================
 spc < escape ; default
 
-# Focus by label
+# Focus by label (number maps to MC index; letter is mnemonic alias)
 spc < 1 ; default : yabai -m space --focus General
 spc < 2 ; default : yabai -m space --focus Work
-spc < 3 ; default : yabai -m space --focus Dev
-spc < 4 ; default : yabai -m space --focus Media
-spc < 5 ; default : yabai -m space --focus Game
-spc < 6 ; default : yabai -m space --focus External
-spc < 7 ; default : yabai -m space --focus Zen
-spc < 8 ; default : yabai -m space --focus Scratch1
-spc < 9 ; default : yabai -m space --focus Scratch2
-spc < g ; default : yabai -m space --focus Ghostty
-spc < k ; default : yabai -m space --focus Kitty
-spc < z ; default : yabai -m space --focus Zed
-spc < i ; default : yabai -m space --focus IntellijIDEA
+spc < 3 ; default : yabai -m space --focus Terminal
+spc < 4 ; default : yabai -m space --focus Dev
+spc < 5 ; default : yabai -m space --focus Media
+spc < 6 ; default : yabai -m space --focus Obsidian
+spc < 7 ; default : yabai -m space --focus Claude
+spc < 8 ; default : yabai -m space --focus Game
+spc < 9 ; default : yabai -m space --focus Scratch
+spc < 0 ; default : yabai -m space --focus External
+spc < g ; default : yabai -m space --focus Terminal
 spc < o ; default : yabai -m space --focus Obsidian
 spc < c ; default : yabai -m space --focus Claude
 
@@ -101,17 +99,15 @@ spc < right ; default : yabai -m space --focus next
 # Move window to space (no follow)
 spc < shift - 1 ; default : yabai -m window --space General
 spc < shift - 2 ; default : yabai -m window --space Work
-spc < shift - 3 ; default : yabai -m window --space Dev
-spc < shift - 4 ; default : yabai -m window --space Media
-spc < shift - 5 ; default : yabai -m window --space Game
-spc < shift - 6 ; default : yabai -m window --space External
-spc < shift - 7 ; default : yabai -m window --space Zen
-spc < shift - 8 ; default : yabai -m window --space Scratch1
-spc < shift - 9 ; default : yabai -m window --space Scratch2
-spc < shift - g ; default : yabai -m window --space Ghostty
-spc < shift - k ; default : yabai -m window --space Kitty
-spc < shift - z ; default : yabai -m window --space Zed
-spc < shift - i ; default : yabai -m window --space IntellijIDEA
+spc < shift - 3 ; default : yabai -m window --space Terminal
+spc < shift - 4 ; default : yabai -m window --space Dev
+spc < shift - 5 ; default : yabai -m window --space Media
+spc < shift - 6 ; default : yabai -m window --space Obsidian
+spc < shift - 7 ; default : yabai -m window --space Claude
+spc < shift - 8 ; default : yabai -m window --space Game
+spc < shift - 9 ; default : yabai -m window --space Scratch
+spc < shift - 0 ; default : yabai -m window --space External
+spc < shift - g ; default : yabai -m window --space Terminal
 spc < shift - o ; default : yabai -m window --space Obsidian
 spc < shift - c ; default : yabai -m window --space Claude
 

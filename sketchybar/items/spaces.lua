@@ -8,37 +8,27 @@ local app_icons = require("helpers.app_icons")
 local workspace_names = {
 	"General",
 	"Work",
+	"Terminal",
 	"Dev",
 	"Media",
-	"Game",
-	"Ghostty",
-	"Kitty",
-	"Zed",
-	"IntellijIDEA",
 	"Obsidian",
 	"Claude",
+	"Game",
+	"Scratch",
 	"External",
-	"Zen",
-	"Scratch1",
-	"Scratch2",
 }
 
 local workspace_icons = {
 	General = "􀎞",       -- house
 	Work = "􀈮",          -- briefcase.fill
+	Terminal = "􀪏",      -- terminal
 	Dev = "􀙚",           -- chevron.left.forwardslash.chevron.right
 	Media = "􀊖",         -- play.rectangle
-	Game = "􀛸",          -- gamecontroller
-	Ghostty = "􀪏",       -- terminal
-	Kitty = "􀪏",         -- terminal (shared glyph)
-	Zed = "􀤸",           -- curlybraces
-	IntellijIDEA = "􀫊",  -- cube
 	Obsidian = "􀈕",      -- doc.text.fill
 	Claude = "􀌪",        -- bubble.left
+	Game = "􀛸",          -- gamecontroller
+	Scratch = "􀉣",       -- tray
 	External = "􀢹",      -- display
-	Zen = "􀎬",           -- globe
-	Scratch1 = "􀉣",      -- tray
-	Scratch2 = "􀉤",      -- tray.fill
 }
 
 local popup_width = 200
