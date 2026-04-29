@@ -1,21 +1,35 @@
 #!/usr/bin/env bash
-# Selective window opacity. Transparent apps fade inactive windows; everything
-# else stays fully opaque.
+# Per-window opacity: when a "transparent" app is focused, fade other windows
+# on the SAME space. Windows on other spaces/displays stay at 1.0 — keeps
+# d2 (External) fully visible regardless of d1 focus.
 
-non_transparent_apps="(Safari|Zen Browser|WhatsApp|Google Chrome|Microsoft Word|Microsoft Excel|Preview|Finder|Visual Studio Code|Spotify|Music|TV|Megogo|Notes|Microsoft PowerPoint)"
-transparent_apps="(Ghostty|Obsidian|Zed|Claude|Monica|Firefox|VSCodium|Kitty|IntelliJ IDEA|cmux)"
-opacity_value=0.75
+transparent_apps_regex='^(Ghostty|Obsidian|Zed|Claude|Monica|Firefox|VSCodium|Kitty|IntelliJ IDEA|cmux)$'
+focused_opacity=0.75
+faded_opacity=0.00001
+normal_opacity=1.0
 
-focused_app=$(yabai -m query --windows --window 2>/dev/null | jq -r '.app // empty')
-[[ -z "$focused_app" ]] && exit 0
+focused=$(yabai -m query --windows --window 2>/dev/null)
+[[ -z "$focused" ]] && exit 0
 
-if echo "$focused_app" | grep -qE "^${transparent_apps}$"; then
-  yabai -m config active_window_opacity "$opacity_value"
-  yabai -m config normal_window_opacity 0.00001
-elif echo "$focused_app" | grep -qE "^${non_transparent_apps}$"; then
-  yabai -m config active_window_opacity 1.0
-  yabai -m config normal_window_opacity 1.0
+focused_id=$(echo "$focused" | jq -r '.id // empty')
+focused_app=$(echo "$focused" | jq -r '.app // empty')
+focused_space=$(echo "$focused" | jq -r '.space // empty')
+[[ -z "$focused_id" ]] && exit 0
+
+if [[ "$focused_app" =~ $transparent_apps_regex ]]; then
+  is_transparent=1
 else
-  yabai -m config active_window_opacity 1.0
-  yabai -m config normal_window_opacity 1.0
+  is_transparent=0
 fi
+
+yabai -m query --windows 2>/dev/null | jq -r '.[] | "\(.id) \(.space)"' | while read -r id space; do
+  if [[ "$is_transparent" -eq 1 && "$space" == "$focused_space" ]]; then
+    if [[ "$id" == "$focused_id" ]]; then
+      yabai -m window "$id" --opacity "$focused_opacity" 2>/dev/null
+    else
+      yabai -m window "$id" --opacity "$faded_opacity" 2>/dev/null
+    fi
+  else
+    yabai -m window "$id" --opacity "$normal_opacity" 2>/dev/null
+  fi
+done
