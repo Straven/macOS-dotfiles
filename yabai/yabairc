@@ -137,4 +137,14 @@ yabai -m signal --add event=window_title_changed action="sketchybar --trigger ti
 yabai -m signal --add event=window_focused action="$HOME/.config/yabai/scripts/window_opacity.sh"
 yabai -m signal --add event=window_created action="$HOME/.config/yabai/scripts/window_opacity.sh"
 
+# ==============================================================================
+# Signals — borders refresh
+# Re-ping the running borders instance on cross-space moves so it flushes
+# stale window positions. Sending any opts to a live borders triggers a redraw.
+# ==============================================================================
+
+yabai -m signal --add event=window_moved action="borders ax_focus=on"
+yabai -m signal --add event=space_changed action="borders ax_focus=on"
+yabai -m signal --add event=display_changed action="borders ax_focus=on"
+
 echo "yabai configuration loaded"
