@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Idempotent space configuration: labels, per-space layouts, display assignments.
-# Layout is 9 spaces on d1 + 1 space on d2 = 10 total.
+# Layout is 9 spaces on d1 + 1 space on d2 = 10 total when both displays are connected.
+# When d2 is disconnected, the External label is skipped and a warning is printed.
 # Assumes Mission Control already has the correct space count split per display.
 
 set -u
@@ -34,25 +35,38 @@ declare -A SPACE_LAYOUTS=(
   [External]="bsp"
 )
 
-# Verify space count matches expected.
+# Detect how many spaces yabai actually sees. With one display, that's 9; with
+# both connected, 10. We label whichever subset is present rather than aborting,
+# so skhd/sketchybar still work in single-display mode.
 ACTUAL_COUNT=$(yabai -m query --spaces 2>/dev/null | jq 'length' 2>/dev/null)
 EXPECTED=${#SPACE_LABELS[@]}
-if [[ -z "$ACTUAL_COUNT" ]] || [[ "$ACTUAL_COUNT" -lt "$EXPECTED" ]]; then
-  echo "yabai/spaces.sh: WARNING - found ${ACTUAL_COUNT:-0} spaces, expected $EXPECTED. Adjust in Mission Control." >&2
+if [[ -z "$ACTUAL_COUNT" || "$ACTUAL_COUNT" -eq 0 ]]; then
+  echo "yabai/spaces.sh: ERROR - yabai returned no spaces. Is yabai running?" >&2
   exit 1
 fi
+if [[ "$ACTUAL_COUNT" -lt "$EXPECTED" ]]; then
+  echo "yabai/spaces.sh: NOTE - found $ACTUAL_COUNT spaces, expected $EXPECTED (d2 likely disconnected). Labeling the $ACTUAL_COUNT present." >&2
+elif [[ "$ACTUAL_COUNT" -gt "$EXPECTED" ]]; then
+  echo "yabai/spaces.sh: WARNING - found $ACTUAL_COUNT spaces, expected $EXPECTED. Extra spaces will be left unlabeled." >&2
+fi
 
-# Apply labels by index.
-for i in "${!SPACE_LABELS[@]}"; do
+APPLY_COUNT=$ACTUAL_COUNT
+if [[ "$APPLY_COUNT" -gt "$EXPECTED" ]]; then
+  APPLY_COUNT=$EXPECTED
+fi
+
+# Apply labels by index for whichever spaces exist.
+for (( i=0; i<APPLY_COUNT; i++ )); do
   idx=$((i + 1))
   label="${SPACE_LABELS[$i]}"
   yabai -m space "$idx" --label "$label" 2>/dev/null || true
 done
 
-# Apply layouts by label.
-for label in "${SPACE_LABELS[@]}"; do
+# Apply layouts by label, but only for labels that were actually assigned.
+for (( i=0; i<APPLY_COUNT; i++ )); do
+  label="${SPACE_LABELS[$i]}"
   layout="${SPACE_LAYOUTS[$label]}"
   yabai -m space "$label" --layout "$layout" 2>/dev/null || true
 done
 
-echo "yabai/spaces.sh: applied labels + layouts (${EXPECTED} spaces)"
+echo "yabai/spaces.sh: applied labels + layouts (${APPLY_COUNT}/${EXPECTED} spaces)"
