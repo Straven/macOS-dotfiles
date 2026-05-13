@@ -22,18 +22,9 @@ SPACE_LABELS=(
 )
 
 # All bsp; stack mode triggered cross-display drift on macOS Tahoe.
-declare -A SPACE_LAYOUTS=(
-  [General]="bsp"
-  [Work]="bsp"
-  [Terminal]="bsp"
-  [Dev]="bsp"
-  [Media]="bsp"
-  [Obsidian]="bsp"
-  [Claude]="bsp"
-  [Game]="bsp"
-  [Scratch]="bsp"
-  [External]="bsp"
-)
+# Kept as a single constant rather than a per-label associative array so the
+# script works on stock macOS bash 3.2 (no `declare -A` support).
+DEFAULT_LAYOUT="bsp"
 
 # Detect how many spaces yabai actually sees. With one display, that's 9; with
 # both connected, 10. We label whichever subset is present rather than aborting,
@@ -65,8 +56,7 @@ done
 # Apply layouts by label, but only for labels that were actually assigned.
 for (( i=0; i<APPLY_COUNT; i++ )); do
   label="${SPACE_LABELS[$i]}"
-  layout="${SPACE_LAYOUTS[$label]}"
-  yabai -m space "$label" --layout "$layout" 2>/dev/null || true
+  yabai -m space "$label" --layout "$DEFAULT_LAYOUT" 2>/dev/null || true
 done
 
 echo "yabai/spaces.sh: applied labels + layouts (${APPLY_COUNT}/${EXPECTED} spaces)"
